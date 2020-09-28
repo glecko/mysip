@@ -54,17 +54,18 @@ const ActionListView = (props: ActionListViewModel) => {
 
   const actionRightButtons = (action: ActionModel) => {
     const deleteCurrentAction = () => deleteAction(action);
-    const buttonContent = (
-      <TouchableHighlight style={ActionListViewStyles.deleteButton}>
+    const alertText = `Are you sure you want to delete this action? (${displayAction(action, true)})`;
+    const renderButtonContentFn = () => (
+      <View style={ActionListViewStyles.deleteButton}>
         <Icon size={30} name="delete" color="white" />
-      </TouchableHighlight>
+      </View>
     );
     return [
       <AlertConfirmButton
         onConfirm={deleteCurrentAction}
-        alertText={'getAlertText'}
-        alertTitle={'alertTitle'}
-        buttonText={buttonContent}
+        alertText={alertText}
+        alertTitle={'Delete action?'}
+        renderContentFn={renderButtonContentFn}
       />
     ];
   };
