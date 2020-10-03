@@ -18,9 +18,10 @@ import {
 
 import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
 
-import ActionRegisterButton from './components/action-register-button/action-register-button.component';
-import ActionListView from './components/action-list-view/action-list-view.component';
-import DeleteLastActionButton from './components/delete-last-action-button/delete-last-action-button.component';
+import ActionRegisterButton from './components/actions/action-register-button/action-register-button.component';
+import ActionListView from './components/actions/action-list-view/action-list-view.component';
+import DeleteLastActionButton from './components/actions/delete-last-action-button/delete-last-action-button.component';
+import PredefinedDrinkButton from './components/drinks/predefined-drink-button/predefined-drink-button.component';
 
 const App: () => React$Node = () => {
   return (
@@ -39,16 +40,21 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <ActionListView name="alcohol unit" maxEntries={10} />
-            <ActionRegisterButton type="alcohol unit" subtype="beer" amount={1.5} />
-            <ActionRegisterButton
-              type="alcohol unit"
-              subtype="small beer"
-              amount={1}
+            <PredefinedDrinkButton
+              name="small beer"
+              volume={200}
+              content={0.05}
+              imageUrl="https://www.flaticon.com/svg/static/icons/svg/168/168557.svg"
             />
-            <ActionRegisterButton
-              type="alcohol unit"
-              subtype="long drink"
-              amount={2}
+            <PredefinedDrinkButton
+              name="long drink"
+              volume={70}
+              content={0.35}
+            />
+            <PredefinedDrinkButton
+              name="wine glass"
+              volume={100}
+              content={0.12}
             />
             <DeleteLastActionButton type="alcohol unit" />
           </View>

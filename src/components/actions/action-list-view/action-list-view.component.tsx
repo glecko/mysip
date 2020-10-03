@@ -5,15 +5,15 @@ import {
 import { ListView } from 'realm/react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { RealmService } from '../storage/realm';
+import { RealmService } from '../../../storage/realm';
 import {
   ActionModel,
   ActionSchema,
   displayAction,
-} from '../storage/actions/schema';
+} from '../../../storage/actions/schema';
 import { ActionListViewModel } from './action-list-view.model';
 import { ActionListViewStyles } from './action-list-view.styles';
-import AlertConfirmButton from '../shared/alert-confirm-button/alert-confirm-button.component';
+import AlertConfirmButton from '../../shared/alert-confirm-button/alert-confirm-button.component';
 
 Icon.loadFont();
 

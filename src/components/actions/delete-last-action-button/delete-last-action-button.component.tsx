@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import { DeleteLastActionButtonModel } from './delete-last-action-button.model';
-import { RealmService } from '../storage/realm';
-import AlertConfirmButton from '../shared/alert-confirm-button/alert-confirm-button.component';
+import { RealmService } from '../../../storage/realm';
+import AlertConfirmButton from '../../shared/alert-confirm-button/alert-confirm-button.component';
 import {
   ActionModel,
   ActionSchema,
   displayAction,
-} from '../storage/actions/schema';
+} from '../../../storage/actions/schema';
 
 function getAlertText(): string {
   const entryToDelete = RealmService.getLastModelEntry<ActionModel>(

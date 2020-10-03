@@ -9,7 +9,7 @@ export function displayAction(
   const dateString = moment(action.date).format('DD/MM/YYYY HH:mm');
   const typeText = `${action.type}${action.amount === 1 ? '' : 's'}`;
   const subTypeText = action.subtype && displaySubtype ? ` (${action.subtype})` : '';
-  return `${dateString} - ${action.amount} ${typeText}${subTypeText}`;
+  return `${dateString} - ${action.amount.toFixed(2)} ${typeText}${subTypeText}`;
 }
 
 export interface ActionModel {
