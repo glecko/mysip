@@ -22,6 +22,7 @@ import ActionRegisterButton from './components/actions/action-register-button/ac
 import ActionListView from './components/actions/action-list-view/action-list-view.component';
 import DeleteLastActionButton from './components/actions/delete-last-action-button/delete-last-action-button.component';
 import PredefinedDrinkButton from './components/drinks/predefined-drink-button/predefined-drink-button.component';
+import DrinkButtonsContainer from './components/drinks/drink-buttons-container/drink-buttons-container.component';
 
 const App: () => React$Node = () => {
   return (
@@ -40,22 +41,7 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <ActionListView name="alcohol unit" maxEntries={10} />
-            <PredefinedDrinkButton
-              name="small beer"
-              volume={200}
-              content={0.05}
-              imageUrl="https://www.flaticon.com/svg/static/icons/svg/168/168557.svg"
-            />
-            <PredefinedDrinkButton
-              name="long drink"
-              volume={70}
-              content={0.35}
-            />
-            <PredefinedDrinkButton
-              name="wine glass"
-              volume={100}
-              content={0.12}
-            />
+            <DrinkButtonsContainer/>
             <DeleteLastActionButton type="alcohol unit" />
           </View>
         </ScrollView>

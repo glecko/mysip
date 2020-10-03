@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { ImageButtonModel } from './image-button.model';
 
 const ImageButton = (props: ImageButtonModel) => (
-  <View style={props.styles ? props.styles.container : undefined}>
+  <View>
     <TouchableOpacity
       style={props.styles ? props.styles.button : undefined}
       activeOpacity={0.5}
@@ -13,6 +13,7 @@ const ImageButton = (props: ImageButtonModel) => (
         source={{ uri: props.imageUrl }}
         style={props.styles ? props.styles.image : undefined}
       />
+      {props.text ? (<Text style={props.styles.text}>{props.text}</Text>) : undefined}
     </TouchableOpacity>
   </View>
 );

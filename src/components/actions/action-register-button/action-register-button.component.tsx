@@ -4,7 +4,7 @@ import { ActionRegisterButtonModel } from './action-register-button.model';
 import { RealmService } from '../../../storage/realm';
 import { ActionSchema, createActionModel } from '../../../storage/actions/schema';
 import ImageButton from '../../shared/image-button/image-button.component';
-import { ActionRegisterButtonStyles } from './action-register-button.styles';
+import { ActionRegisterButtonStyles, ActionRegisterImageButtonStyles } from './action-register-button.styles';
 
 const ActionRegisterButton = (props: ActionRegisterButtonModel) => {
   const onAddActionPress = () => {
@@ -20,22 +20,25 @@ const ActionRegisterButton = (props: ActionRegisterButtonModel) => {
   const typeText = `${props.type}${props.amount === 1 ? '' : 's'}`;
   const text = props.text ? props.text : `Add ${props.subtype} (${props.amount} ${typeText})`;
 
-  let imageButton;
   if (props.imageUrl) {
     const styles = {
-      image: ActionRegisterButtonStyles.image,
-      container: ActionRegisterButtonStyles.container,
-      button: ActionRegisterButtonStyles.button
+      image: ActionRegisterImageButtonStyles.image,
+      button: ActionRegisterImageButtonStyles.button,
+      container: ActionRegisterImageButtonStyles.container,
+      text: ActionRegisterImageButtonStyles.text,
     };
-    imageButton = <ImageButton onPress={onAddActionPress} imageUrl={props.imageUrl} styles={styles} />;
+    return (
+      <View style={ActionRegisterButtonStyles.container}>
+        <ImageButton onPress={onAddActionPress} imageUrl={props.imageUrl} styles={styles} text={text} />
+      </View>
+    );
+  } else {
+    return (
+      <View style={ActionRegisterButtonStyles.container}>
+        <Button onPress={onAddActionPress} title={text} />
+      </View>
+    );
   }
-
-  return (
-    <View>
-      {imageButton}
-      <Button onPress={onAddActionPress} title={text} />
-    </View>
-  );
 };
 
 export default ActionRegisterButton;
