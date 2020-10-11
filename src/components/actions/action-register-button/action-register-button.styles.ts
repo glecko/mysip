@@ -6,7 +6,9 @@ export const ActionRegisterButtonStyles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 10,
-    width: 110
+    width: 110,
+    padding: 5,
+    margin: 5,
   },
   textContainer: {
     width: '100%',
@@ -14,12 +16,8 @@ export const ActionRegisterButtonStyles = StyleSheet.create({
   mainText: {
     textAlign: 'center'
   },
-  bottomRightText: {
-    textAlign: 'right'
-  },
-  bottomLeftText: {
-    textAlign: 'left'
-  },
+  bottomRightText: {},
+  bottomLeftText: {},
   bottomTextContainer: {
     width: '100%',
     flexDirection: 'row',
