@@ -9,7 +9,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 import NavigationComponent from './views/navigation';
+
+FontAwesomeIcon.loadFont();
+IonIcon.loadFont();
 
 const App: () => React$Node = () => (
   <>

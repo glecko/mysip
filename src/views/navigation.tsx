@@ -1,18 +1,31 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import MainView from './main';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import IonIcon from 'react-native-vector-icons/Ionicons';
+import HomeView from './home';
+import HistoryView from './history';
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const NavigationComponent = () => (
   <NavigationContainer>
-    <Tab.Navigator>
+    <Tab.Navigator
+      backBehavior="none"
+    >
       <Tab.Screen
         name="Home"
-        component={MainView}
+        component={HomeView}
+        options={{
+          tabBarIcon: () => <IonIcon size={20} name="beer" color="white" />
+        }}
       />
-      <Tab.Screen name="Screen 2" component={MainView} />
+      <Tab.Screen
+        name="History"
+        component={HistoryView}
+        options={{
+          tabBarIcon: () => <IonIcon size={20} name="bar-chart" color="white" />
+        }}
+      />
     </Tab.Navigator>
   </NavigationContainer>
 );
