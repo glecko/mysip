@@ -14,7 +14,7 @@ class RealmServiceClass {
     });
   }
 
-  deleteLastModelEntry(model: string, dateProperty: string) {
+  deleteLastFilteredModelEntry(model: string, dateProperty: string) {
     this.realmInstance.write(() => {
       const lastEntry = this.getLastModelEntry(model, dateProperty);
       if (lastEntry) {

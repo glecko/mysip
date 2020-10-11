@@ -64,7 +64,7 @@ const ActionListView = (props: ActionListViewModel) => {
       <AlertConfirmButton
         onConfirm={deleteCurrentAction}
         alertText={alertText}
-        alertTitle={'Delete action?'}
+        alertTitle="Delete action?"
         renderContentFn={renderButtonContentFn}
       />
     ];

@@ -15,15 +15,15 @@ const AlertConfirmButton = (props: AlertConfirmButtonModel) => {
     return (
       <TouchableHighlight onPress={buttonPress}>{props.renderContentFn()}</TouchableHighlight>
     );
-  } else if (props.buttonText) {
+  }
+  if (props.buttonText) {
     return (
       <View>
         <Button onPress={buttonPress} title={props.buttonText} />
       </View>
     );
-  } else {
-    throw Error('Neither the buttonContent nor the buttonText prop were defined in the component');
   }
+  throw Error('Neither the buttonContent nor the buttonText prop were defined in the component');
 };
 
 export default AlertConfirmButton;

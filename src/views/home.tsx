@@ -3,25 +3,10 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Text,
 } from 'react-native';
 import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
-import DeleteLastActionButton
-  from '../components/actions/delete-last-action-button/delete-last-action-button.component';
+import DeleteLastDrinkButton from '../components/drinks/delete-last-drink/delete-last-drink-button.component';
 import DrinkButtonsContainer from '../components/drinks/drink-buttons-container/drink-buttons-container.component';
-
-const HomeView = () => (
-  <ScrollView
-    contentInsetAdjustmentBehavior="automatic"
-    style={styles.scrollView}
-  >
-    <Header />
-    <View style={styles.body}>
-      <DrinkButtonsContainer />
-      <DeleteLastActionButton type="alcohol unit" />
-    </View>
-  </ScrollView>
-);
 
 const styles = StyleSheet.create({
   scrollView: {},
@@ -29,5 +14,20 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
 });
+
+const HomeView = () => (
+  <View>
+    <Header />
+    <DeleteLastDrinkButton />
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={styles.scrollView}
+    >
+      <View style={styles.body}>
+        <DrinkButtonsContainer />
+      </View>
+    </ScrollView>
+  </View>
+);
 
 export default HomeView;

@@ -22,7 +22,7 @@ function getAlertText(): string {
 
 const DeleteLastActionButton = (props: DeleteLastActionButtonModel) => {
   const deleteLastAction = () => {
-    RealmService.deleteLastModelEntry(ActionSchema.name, 'date');
+    RealmService.deleteObjectsByQuery(ActionSchema.name, `type = "${props.type}" SORT(date DESC) LIMIT(1)`);
   };
 
   const buttonPressCancel = () => {};
@@ -36,6 +36,7 @@ const DeleteLastActionButton = (props: DeleteLastActionButtonModel) => {
         alertTextFn={getAlertText}
         alertTitle={alertTitle}
         buttonText={buttonText}
+        renderContentFn={props.renderButtonContentFn}
         onCancel={buttonPressCancel}
       />
     </View>
