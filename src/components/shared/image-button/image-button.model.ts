@@ -1,8 +1,8 @@
-import { GestureResponderEvent, ImageStyle, ViewStyle } from 'react-native';
+import { ImageStyle, ViewStyle } from 'react-native';
 
 export interface ImageButtonModel {
   imageUrl?: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress: () => void;
   textElement?: JSX.Element;
   styles?: {
     container: ViewStyle;

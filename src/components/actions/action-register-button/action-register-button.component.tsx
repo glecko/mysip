@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { ActionRegisterButtonModel } from './action-register-button.model';
+import { FullActionRegisterButtonModel } from './action-register-button.model';
 import { RealmService } from '../../../storage/realm';
 import { ActionSchema, createActionModel } from '../../../storage/actions/schema';
 import ImageButton from '../../shared/image-button/image-button.component';
 import { ActionRegisterButtonStyles, ActionRegisterImageButtonStyles } from './action-register-button.styles';
 
-const ActionRegisterButton = (props: ActionRegisterButtonModel) => {
+const ActionRegisterButton = (props: FullActionRegisterButtonModel) => {
   const onAddActionPress = () => {
     const action = createActionModel(
       props.type,

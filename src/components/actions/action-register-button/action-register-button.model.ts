@@ -1,9 +1,16 @@
 export interface ActionRegisterButtonModel {
   type: string;
+  imageUrl?: string;
+  text?: string;
+}
+
+export interface FullActionRegisterButtonModel extends ActionRegisterButtonModel {
   subtype: string;
   amount: number;
-  imageUrl?: string;
-  text: string;
   bottomRightText?: string;
   bottomLeftText?: string;
+}
+
+export interface CustomActionRegisterButtonModel extends ActionRegisterButtonModel {
+
 }
