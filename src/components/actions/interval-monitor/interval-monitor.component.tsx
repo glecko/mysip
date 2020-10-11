@@ -21,8 +21,11 @@ const IntervalMonitor = (props: IntervalMonitorModel) => {
     });
   }, [props.type, props.interval]);
 
+  const totalAmount = actions.reduce((acc, action) => {
+    return acc + action.amount;
+  }, 0);
   return (
-    <Text style={props.style}>{actions.length}</Text>
+    <Text style={props.style}>{totalAmount.toFixed(1)}</Text>
   );
 };
 

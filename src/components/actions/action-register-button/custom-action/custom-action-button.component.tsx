@@ -23,7 +23,7 @@ const CustomActionButton = (props: CustomActionRegisterButtonModel) => {
   const onDialogConfirm = () => {
     const action = createActionModel(
       props.type,
-      parseInt(amount, 10),
+      parseFloat(amount),
       subtype,
       note
     );
@@ -32,7 +32,7 @@ const CustomActionButton = (props: CustomActionRegisterButtonModel) => {
   };
 
   const mainText = props.text ? props.text : `Add custom ${props.type}`;
-  const isValidForm = subtype !== '' && amount > 0;
+  const isValidForm = subtype !== '' && parseFloat(amount) > 0;
 
   const textElement = (
     <View style={ActionRegisterButtonStyles.textContainer}>

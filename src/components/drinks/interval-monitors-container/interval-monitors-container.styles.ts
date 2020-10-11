@@ -30,7 +30,7 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
     fontSize: 18,
   },
   monitorText: {
-    fontSize: 60
+    fontSize: 50
   },
   monitorSubheader: {
     fontSize: 12,
