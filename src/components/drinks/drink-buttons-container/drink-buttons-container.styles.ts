@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const DrinkButtonsContainerStyles = StyleSheet.create({
+const DrinkButtonsContainerStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -8,3 +8,4 @@ export const DrinkButtonsContainerStyles = StyleSheet.create({
   },
 });
 
+export default DrinkButtonsContainerStyles;

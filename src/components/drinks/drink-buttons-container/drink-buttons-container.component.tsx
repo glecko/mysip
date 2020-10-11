@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import PredefinedDrinkButton from '../predefined-drink-button/predefined-drink-button.component';
 import { PREDEFINED_DRINKS } from '../../../data/drinks';
-import { DrinkButtonsContainerStyles } from './drink-buttons-container.styles';
+import styles from './drink-buttons-container.styles';
 
 const DrinkButtonsContainer = () => {
   const buttons = PREDEFINED_DRINKS.map((drink) => {
@@ -11,7 +11,7 @@ const DrinkButtonsContainer = () => {
     );
   });
   return (
-    <View style={DrinkButtonsContainerStyles.container}>
+    <View style={styles.container}>
       {buttons}
     </View>
   );

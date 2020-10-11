@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const ActionListViewStyles = StyleSheet.create({
+const ActionListViewStyles = StyleSheet.create({
   swipeRowFront: {
     alignItems: 'center',
     backgroundColor: '#CCC',
@@ -13,3 +13,5 @@ export const ActionListViewStyles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default ActionListViewStyles;

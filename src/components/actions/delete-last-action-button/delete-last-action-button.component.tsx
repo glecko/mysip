@@ -15,7 +15,7 @@ function getAlertText(): string {
     'date'
   );
   if (!entryToDelete) return 'No actions to delete.';
-  return `Are you sure you want to delete the last ${entryToDelete.type}? 
+  return `Are you sure you want to delete the last ${entryToDelete.type} entry? 
   
   ${displayAction(entryToDelete, true)}`;
 }
@@ -27,8 +27,8 @@ const DeleteLastActionButton = (props: DeleteLastActionButtonModel) => {
 
   const buttonPressCancel = () => {};
 
-  const buttonText = `Delete last ${props.type}`;
-  const alertTitle = `Delete last ${props.type}?`;
+  const buttonText = `Delete last ${props.type} entry`;
+  const alertTitle = 'Delete last entry?';
   return (
     <View>
       <AlertConfirmButton

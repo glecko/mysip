@@ -12,8 +12,9 @@ import {
   displayAction,
 } from '../../../storage/actions/schema';
 import { ActionListViewModel } from './action-list-view.model';
-import { ActionListViewStyles } from './action-list-view.styles';
 import AlertConfirmButton from '../../shared/alert-confirm-button/alert-confirm-button.component';
+import { getActions } from '../../../hooks/actions/hooks';
+import styles from './action-list-view.styles';
 
 Icon.loadFont();
 
@@ -21,17 +22,8 @@ const dataSource = new ListView.DataSource({
   rowHasChanged: (r1: ActionModel, r2: ActionModel) => r1.id !== r2.id,
 });
 
-function getData(filterType: string, limit: number) {
-  const actions = RealmService.realmInstance.objects<ActionModel>(
-    ActionSchema.name
-  );
-  return actions.filtered(
-    `type = "${filterType}" SORT(date DESC) LIMIT(${limit})`,
-  );
-}
-
 function buildInitialState(filterType: string, limit: number) {
-  const typeActions = getData(filterType, limit);
+  const typeActions = getActions(filterType, limit);
   return dataSource.cloneWithRows(typeActions);
 }
 
@@ -45,7 +37,7 @@ const ActionListView = (props: ActionListViewModel) => {
   );
 
   useEffect(() => {
-    const typeActions = getData(props.name, props.maxEntries);
+    const typeActions = getActions(props.name, props.maxEntries);
     setActionsData(dataSource.cloneWithRows(typeActions));
     typeActions.addListener(() => {
       setActionsData(dataSource.cloneWithRows(typeActions));
@@ -56,7 +48,7 @@ const ActionListView = (props: ActionListViewModel) => {
     const deleteCurrentAction = () => deleteAction(action);
     const alertText = `Are you sure you want to delete this action? (${displayAction(action, true)})`;
     const renderButtonContentFn = () => (
-      <View style={ActionListViewStyles.deleteButton}>
+      <View style={styles.deleteButton}>
         <Icon size={30} name="delete" color="white" />
       </View>
     );
@@ -74,7 +66,7 @@ const ActionListView = (props: ActionListViewModel) => {
     const text = displayAction(action, true);
     return (
       <Swipeable rightButtons={actionRightButtons(action)}>
-        <View style={ActionListViewStyles.swipeRowFront}>
+        <View style={styles.swipeRowFront}>
           <Text>{text}</Text>
         </View>
       </Swipeable>

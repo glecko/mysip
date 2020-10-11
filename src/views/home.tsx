@@ -4,21 +4,18 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
-import DeleteLastDrinkButton from '../components/drinks/delete-last-drink/delete-last-drink-button.component';
 import DrinkButtonsContainer from '../components/drinks/drink-buttons-container/drink-buttons-container.component';
+import IntervalMonitorsContainer
+  from '../components/drinks/interval-monitors-container/interval-monitors-container.component';
 
 const styles = StyleSheet.create({
   scrollView: {},
-  body: {
-    backgroundColor: Colors.white,
-  },
+  body: {},
 });
 
 const HomeView = () => (
   <View>
-    <Header />
-    <DeleteLastDrinkButton />
+    <IntervalMonitorsContainer />
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       style={styles.scrollView}

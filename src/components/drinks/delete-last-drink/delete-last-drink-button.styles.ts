@@ -1,12 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-export const DeleteLastDrinkButtonStyles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: 20,
-    top: 20,
-  },
+const DeleteLastDrinkButtonStyles = StyleSheet.create({
+  container: {},
   fabButton: {
     backgroundColor: 'orange'
   },
 });
+
+export default DeleteLastDrinkButtonStyles;
