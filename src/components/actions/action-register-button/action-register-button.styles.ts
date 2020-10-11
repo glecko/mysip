@@ -8,6 +8,23 @@ export const ActionRegisterButtonStyles = StyleSheet.create({
     borderRadius: 10,
     width: 110
   },
+  textContainer: {
+    width: '100%',
+  },
+  mainText: {
+    textAlign: 'center'
+  },
+  bottomRightText: {
+    textAlign: 'right'
+  },
+  bottomLeftText: {
+    textAlign: 'left'
+  },
+  bottomTextContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 });
 
 export const ActionRegisterImageButtonStyles = StyleSheet.create({
@@ -21,7 +38,4 @@ export const ActionRegisterImageButtonStyles = StyleSheet.create({
     margin: 5,
   },
   container: {},
-  text: {
-    textAlign: 'center'
-  },
 });

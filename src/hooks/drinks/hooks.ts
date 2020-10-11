@@ -5,6 +5,18 @@ export function getAlcoholUnitsForDrink(drink: AlcoholicDrinkModel) {
   return drink.volume * drink.content * ALCOHOL_ML_TO_UNITS_CONVERSION;
 }
 
+export function getDrinkDisplayVolume(drink: AlcoholicDrinkModel) {
+  return `${drink.volume} ml`;
+}
+
+export function getDrinkDisplayContent(drink: AlcoholicDrinkModel) {
+  return displayPercentage(drink.content);
+}
+
+export function getDrinkDisplayName(drink: AlcoholicDrinkModel) {
+  return `${capitalize(drink.name)}`;
+}
+
 export function getDrinkDescription(drink: AlcoholicDrinkModel) {
-  return `${capitalize(drink.name)} (${drink.volume} ml - ${displayPercentage(drink.content)})`;
+  return `${getDrinkDisplayName(drink)} (${getDrinkDisplayVolume(drink)} - ${getDrinkDisplayContent(drink)})`;
 }

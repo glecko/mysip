@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  View, Image, TouchableOpacity
+} from 'react-native';
 import { ImageButtonModel } from './image-button.model';
 
 const ImageButton = (props: ImageButtonModel) => (
@@ -9,11 +11,16 @@ const ImageButton = (props: ImageButtonModel) => (
       activeOpacity={0.5}
       onPress={props.onPress}
     >
-      <Image
-        source={{ uri: props.imageUrl }}
-        style={props.styles ? props.styles.image : undefined}
-      />
-      {props.text ? (<Text style={props.styles.text}>{props.text}</Text>) : undefined}
+      {
+        props.imageUrl
+          ? (
+            <Image
+              source={{ uri: props.imageUrl }}
+              style={props.styles ? props.styles.image : undefined}
+            />
+          ) : undefined
+      }
+      {props.textElement}
     </TouchableOpacity>
   </View>
 );

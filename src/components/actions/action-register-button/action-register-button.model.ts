@@ -3,5 +3,7 @@ export interface ActionRegisterButtonModel {
   subtype: string;
   amount: number;
   imageUrl?: string;
-  text?: string;
+  text: string;
+  bottomRightText?: string;
+  bottomLeftText?: string;
 }
