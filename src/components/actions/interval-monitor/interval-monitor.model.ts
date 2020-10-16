@@ -1,7 +1,8 @@
 import { TextStyle } from 'react-native';
+import { IntervalModel } from '../../../hooks/actions/model';
 
 export interface IntervalMonitorModel {
   type: string;
-  interval: { start?: Date, end?: Date }
+  interval: IntervalModel;
   style: TextStyle;
 }

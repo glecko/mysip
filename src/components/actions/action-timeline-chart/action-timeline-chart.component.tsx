@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { ActionTimelineChartModel } from './action-timeline-chart.model';
-import { getActions } from '../../../hooks/actions/hooks';
 import { BarChart } from 'react-native-chart-kit';
-import { View } from 'react-native';
-import { ActionModel } from '../../../storage/actions/schema';
+import { Dimensions, View } from 'react-native';
 import { ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
+import { aggregatedActionsByDate, getActions } from '../../../hooks/actions/hooks';
+import { ActionTimelineChartModel } from './action-timeline-chart.model';
+import { ActionModel } from '../../../storage/actions/schema';
 
 function getChartActions(props: ActionTimelineChartModel) {
-  return getActions(props.type);
+  return getActions(props.type, undefined, props.interval);
 }
 
-function getChartData(actions: Results<ActionModel>): ChartData {
+function getChartData(actions: Results<ActionModel>, aggregationFormat: string): ChartData {
+  const aggregatedActions = aggregatedActionsByDate(actions, aggregationFormat);
+  const labels = aggregatedActions.map((dateActions) => dateActions.formattedDate);
+  const amounts = aggregatedActions.map((dateActions) => dateActions.actions.reduce((acc, action) => acc + action.amount, 0));
   return {
-    labels: ['Mon', 'Tue'],
+    labels,
     datasets: [
-      {
-        data: [20, 45]
-      }
+      { data: amounts }
     ]
   };
 }
@@ -37,20 +38,21 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
   }, [props.type]);
 
   const chartConfig = {
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    useShadowColorFromDataset: false // optional
+    backgroundGradientFrom: '#eff3ff',
+    backgroundGradientTo: '#efefef',
+    color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
+    fillShadowGradientOpacity: 0.8,
+    decimalPlaces: 1,
   };
 
-  const data = getChartData(actions);
+  const data = getChartData(actions, props.aggregationFormat);
   return (
     <View>
       <BarChart
         data={data}
         chartConfig={chartConfig}
-        width={500}
-        height={200}
-        yAxisLabel={props.type}
-        verticalLabelRotation={30}
+        width={Dimensions.get('window').width}
+        height={220}
         fromZero
       />
     </View>

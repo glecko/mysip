@@ -1,7 +1,3 @@
-export function capitalize(s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-export function displayPercentage(percentage: number) {
-  return `${percentage * 100}%`;
+export function sameDay(dateA: Date, dateB: Date) {
+  return dateA.getDate() === dateB.getDate() && dateA.getMonth() === dateB.getMonth() && dateA.getFullYear() === dateB.getFullYear();
 }

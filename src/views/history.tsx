@@ -4,26 +4,25 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
+
 import ActionListView from '../components/actions/action-list-view/action-list-view.component';
+import ActionTimelineChart from '../components/actions/action-timeline-chart/action-timeline-chart.component';
+import { ALCOHOL_UNIT_ACTION_TYPE } from '../hooks/drinks/model';
 
 const HistoryView = () => (
-  <ScrollView
-    contentInsetAdjustmentBehavior="automatic"
-    style={styles.scrollView}
-  >
-    <Header />
-    <View style={styles.body}>
-      <ActionListView name="alcohol unit" maxEntries={10} />
-    </View>
-  </ScrollView>
+  <View>
+    <ActionTimelineChart type={ALCOHOL_UNIT_ACTION_TYPE} aggregationFormat="DD/MM/YYYY" interval={{}} />
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={styles.scrollView}
+    >
+      <ActionListView name={ALCOHOL_UNIT_ACTION_TYPE} maxEntries={10} />
+    </ScrollView>
+  </View>
 );
 
 const styles = StyleSheet.create({
   scrollView: {},
-  body: {
-    backgroundColor: Colors.white,
-  },
 });
 
 export default HistoryView;

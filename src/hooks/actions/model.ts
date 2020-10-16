@@ -1,10 +1,11 @@
-export const ALCOHOL_UNIT_ACTION_TYPE = 'alcohol unit';
+import { ActionModel } from '../../storage/actions/schema';
 
-export const ALCOHOL_ML_TO_UNITS_CONVERSION = 0.10;
+export interface ActionsAgregatedByDateModel {
+  formattedDate: string;
+  actions: ActionModel[];
+}
 
-export interface AlcoholicDrinkModel {
-  name: string;
-  volume: number; // in ml
-  content: number; // %
-  imageUrl?: string;
+export interface IntervalModel {
+  start?: Date;
+  end?: Date;
 }

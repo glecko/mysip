@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import IntervalMonitor from '../../actions/interval-monitor/interval-monitor.component';
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../../../hooks/drinks/model';
 import DeleteLastDrinkButton from '../delete-last-drink/delete-last-drink-button.component';
 import styles from './interval-monitors-container.styles';
 
-const IntervalMonitorsContainer = () => {
-  const today = new Date();
-  today.setHours(0);
+function getTodayInterval() {
+  const start = new Date();
+  start.setHours(0);
+  return { start };
+}
 
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+function getLastWeekInterval() {
+  const start = new Date();
+  start.setDate(start.getDate() - 7);
+  return { start };
+}
+
+const IntervalMonitorsContainer = () => {
+  const [todayInterval, setTodayInterval] = useState(getTodayInterval());
+  const [lastWeekInterval, setLastWeekInterval] = useState(getLastWeekInterval());
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTodayInterval(getTodayInterval());
+      setLastWeekInterval(getLastWeekInterval());
+    }, 10000);
+    // Clear timeout if the component is unmounted
+    return () => clearTimeout(timer);
+  });
 
   return (
     <View style={styles.container}>
@@ -24,7 +42,7 @@ const IntervalMonitorsContainer = () => {
       <View style={styles.centerContainer}>
         <IntervalMonitor
           type={ALCOHOL_UNIT_ACTION_TYPE}
-          interval={{ start: today }}
+          interval={todayInterval}
           style={styles.monitorText}
         />
         <Text style={styles.monitorSubheader}>Alcohol units</Text>
@@ -33,7 +51,7 @@ const IntervalMonitorsContainer = () => {
       <View style={styles.rightContainer}>
         <IntervalMonitor
           type={ALCOHOL_UNIT_ACTION_TYPE}
-          interval={{ start: sevenDaysAgo }}
+          interval={lastWeekInterval}
           style={styles.monitorText}
         />
         <Text style={styles.monitorSubheader}>Alcohol units</Text>
