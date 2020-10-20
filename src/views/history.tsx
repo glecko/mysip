@@ -6,12 +6,21 @@ import {
 } from 'react-native';
 
 import ActionListView from '../components/actions/action-list-view/action-list-view.component';
-import ActionTimelineChart from '../components/actions/action-timeline-chart/action-timeline-chart.component';
+import ConfigurableActionTimelineChart from '../components/actions/configurable-timeline-chart/configurable-timeline-chart.component';
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../hooks/drinks/model';
 
 const HistoryView = () => (
   <View>
-    <ActionTimelineChart type={ALCOHOL_UNIT_ACTION_TYPE} aggregationFormat="DD/MM/YYYY" interval={{}} />
+    <ConfigurableActionTimelineChart
+      type={ALCOHOL_UNIT_ACTION_TYPE}
+      chartConfig={{
+        backgroundGradientFrom: '#eff3ff',
+        backgroundGradientTo: '#efefef',
+        color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
+        fillShadowGradientOpacity: 0.8,
+        decimalPlaces: 1,
+      }}
+    />
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       style={styles.scrollView}

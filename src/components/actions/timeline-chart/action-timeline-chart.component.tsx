@@ -35,22 +35,14 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
     initialActions.addListener(() => {
       setActions(getChartActions(props));
     });
-  }, [props.type]);
-
-  const chartConfig = {
-    backgroundGradientFrom: '#eff3ff',
-    backgroundGradientTo: '#efefef',
-    color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
-    fillShadowGradientOpacity: 0.8,
-    decimalPlaces: 1,
-  };
+  }, [props.type, props.aggregationFormat, props.interval]);
 
   const data = getChartData(actions, props.aggregationFormat);
   return (
     <View>
       <BarChart
         data={data}
-        chartConfig={chartConfig}
+        chartConfig={props.chartConfig}
         width={Dimensions.get('window').width}
         height={220}
         fromZero
