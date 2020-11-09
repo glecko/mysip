@@ -5,9 +5,9 @@ import {
   View,
 } from 'react-native';
 
-import ActionListView from '../components/actions/action-list-view/action-list-view.component';
-import ConfigurableActionTimelineChart from '../components/actions/configurable-timeline-chart/configurable-timeline-chart.component';
-import { ALCOHOL_UNIT_ACTION_TYPE } from '../hooks/drinks/model';
+import ActionListView from '../actions/components/action-list-view/action-list-view.component';
+import ConfigurableActionTimelineChart from '../actions/components/configurable-timeline-chart/configurable-timeline-chart.component';
+import { ALCOHOL_UNIT_ACTION_TYPE } from '../drinks/models/model';
 
 const HistoryView = () => (
   <View>

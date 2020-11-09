@@ -4,9 +4,9 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import DrinkButtonsContainer from '../components/drinks/drink-buttons-container/drink-buttons-container.component';
+import DrinkButtonsContainer from '../drinks/components/drink-buttons-container/drink-buttons-container.component';
 import IntervalMonitorsContainer
-  from '../components/drinks/interval-monitors-container/interval-monitors-container.component';
+  from '../drinks/components/interval-monitors-container/interval-monitors-container.component';
 
 const styles = StyleSheet.create({
   scrollView: {},
