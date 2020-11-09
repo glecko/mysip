@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Dialog, Portal, TextInput } from 'react-native-paper';
+import {
+  Button, Dialog, Portal, TextInput
+} from 'react-native-paper';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { ActionEditDialogModel } from './action-edit-dialog.model';
 import { upsertAction } from '../../hooks/application';
 
 const ActionEditDialog = (props: ActionEditDialogModel) => {
+  const [date, setDate] = useState(props.action.date);
   const [note, setNote] = useState(props.action.note ? props.action.note : '');
   const [amount, setAmount] = useState(props.action.amount.toFixed(2));
   const [subtype, setSubtype] = useState(props.action.subtype);
@@ -15,12 +19,14 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
     setAmount(props.action.amount.toFixed(2));
     setSubtype(props.action.subtype);
     setNote(props.action.note ? props.action.note : '');
+    setDate(props.action.date);
   };
 
   const onDialogConfirm = () => {
     upsertAction({
       id: props.action.id,
       type: props.action.type,
+      date,
       amount: parseFloat(amount),
       subtype,
       note,
@@ -34,11 +40,24 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
     props.onDismiss();
   };
 
+  const onDateSelectionChange = (event: Event, selectedDate?: Date) => {
+    const currentDate = selectedDate ? selectedDate : date;
+    setDate(currentDate);
+  };
+
   return (
     <Portal>
       <Dialog visible={props.visible} onDismiss={onDismiss}>
         <Dialog.Title>{title}</Dialog.Title>
         <Dialog.Content>
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            minuteInterval={15}
+            mode="datetime"
+            display="default"
+            onChange={onDateSelectionChange}
+          />
           <TextInput
             mode="outlined"
             placeholder="Subtype"

@@ -3,5 +3,4 @@ import { ActionModel } from './schema';
 
 export type ActionStub = Overwrite<ActionModel, {
   id?: string;
-  date?: Date;
 }>;
