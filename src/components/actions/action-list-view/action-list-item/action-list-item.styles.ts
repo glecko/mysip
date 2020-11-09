@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
 
-const ActionListViewStyles = StyleSheet.create({
+const ActionListItemStyles = StyleSheet.create({
   swipeRowFront: {
     alignItems: 'center',
     backgroundColor: '#CCC',
     justifyContent: 'center',
     height: 40,
   },
-  deleteButton: {
-    paddingLeft: 20,
-    backgroundColor: 'red',
+  actionButton: {
+    height: '100%',
     justifyContent: 'center',
+    paddingLeft: 20,
   },
 });
 
-export default ActionListViewStyles;
+export default ActionListItemStyles;

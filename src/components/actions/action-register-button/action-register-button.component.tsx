@@ -14,7 +14,7 @@ const ActionRegisterButton = (props: FullActionRegisterButtonModel) => {
       props.subtype,
       ''
     );
-    RealmService.write(ActionSchema.name, action);
+    RealmService.create(ActionSchema.name, action);
   };
 
   const typeText = `${props.type}${props.amount === 1 ? '' : 's'}`;

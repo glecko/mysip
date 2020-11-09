@@ -25,7 +25,7 @@ const HistoryView = () => (
       contentInsetAdjustmentBehavior="automatic"
       style={styles.scrollView}
     >
-      <ActionListView name={ALCOHOL_UNIT_ACTION_TYPE} maxEntries={10} />
+      <ActionListView name={ALCOHOL_UNIT_ACTION_TYPE} />
     </ScrollView>
   </View>
 );

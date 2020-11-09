@@ -8,7 +8,7 @@ class RealmServiceClass {
 
   realmInstance: Realm;
 
-  write<T>(model: string, data: any) {
+  create<T>(model: string, data: { [property: string]: any }) {
     this.realmInstance.write(() => {
       this.realmInstance.create(model, data, Realm.UpdateMode.All);
     });
@@ -21,6 +21,34 @@ class RealmServiceClass {
         this.realmInstance.delete(lastEntry);
       }
     });
+  }
+
+  update<T>(model: string, id: string, data: { [property: string]: any }) {
+    const instance = this.getEntityById<T>(model, id, true);
+    this.realmInstance.write(() => {
+      for (const [key, value] of Object.entries(data)) {
+        if (key === 'id') continue;
+        instance[key] = value;
+      }
+    });
+  }
+
+  upsert<T>(model: string, data: { [property: string]: any }) {
+    if (data.id) {
+      const entity = this.getEntityById(model, data.id, false);
+      if (entity) {
+        this.update<T>(model, data.id, data);
+        return;
+      }
+    }
+    this.create(model, data);
+  }
+
+  getEntityById<T>(model: string, id: string, throwIfNotFound: boolean) {
+    const collection = this.realmInstance.objects<T>(model);
+    const [entity] = collection.filtered(`id = '${id}'`);
+    if (!entity && throwIfNotFound) throw Error(`Model '${model}' with ID ${id} could not be found in the database.`);
+    return entity;
   }
 
   getLastModelEntry<T>(model: string, dateProperty: string): T & Realm.Object {
@@ -38,7 +66,10 @@ class RealmServiceClass {
   }
 
   deleteObjectById(model: string, id: string) {
-    this.deleteObjectsByQuery(model, `id = '${id}'`);
+    const entity = this.getEntityById(model, id, true);
+    this.realmInstance.write(() => {
+      this.realmInstance.delete([entity]);
+    });
   }
 }
 
