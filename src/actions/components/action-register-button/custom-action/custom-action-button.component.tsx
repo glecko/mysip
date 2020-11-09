@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { CustomActionRegisterButtonModel } from '../action-register-button.model';
+import { ActionRegisterButtonModel } from '../action-register-button.model';
 import { ActionRegisterButtonStyles, ActionRegisterImageButtonStyles } from '../action-register-button.styles';
 import ImageButton from '../../../../shared/components/image-button/image-button.component';
 import ActionEditDialog from '../../action-edit-dialog/action-edit-dialog.component';
-import { ActionModel } from '../../../models/schema';
 import { ActionStub } from '../../action-edit-dialog/action-edit-dialog.model';
 
-const CustomActionButton = (props: CustomActionRegisterButtonModel) => {
+const CustomActionButton = (props: ActionRegisterButtonModel) => {
   const [visible, setVisible] = useState(false);
   const mainText = props.text ? props.text : `Add custom ${props.type}`;
   const onDialogClosed = () => setVisible(false);
@@ -36,7 +35,13 @@ const CustomActionButton = (props: CustomActionRegisterButtonModel) => {
       <View style={ActionRegisterButtonStyles.container}>
         <ImageButton onPress={() => setVisible(true)} imageUrl={props.imageUrl} styles={styles} textElement={textElement} />
       </View>
-      <ActionEditDialog action={emptyAction} visible={visible} onDismiss={onDialogClosed} onDialogConfirm={onDialogClosed}/>
+      <ActionEditDialog
+        title={mainText}
+        action={emptyAction}
+        visible={visible}
+        onDismiss={onDialogClosed}
+        onDialogConfirm={onDialogClosed}
+      />
     </View>
   );
 };

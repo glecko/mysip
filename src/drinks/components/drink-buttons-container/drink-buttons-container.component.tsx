@@ -7,17 +7,16 @@ import CustomActionButton from '../../../actions/components/action-register-butt
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
 
 const DrinkButtonsContainer = () => {
-  const buttons = PREDEFINED_DRINKS.map((drink) => {
-    return (
-      <PredefinedDrinkButton {...drink} />
-    );
-  });
+  const buttons = PREDEFINED_DRINKS.map((drink) => (
+    <PredefinedDrinkButton {...drink} />
+  ));
   return (
     <View style={styles.container}>
       {buttons}
       <CustomActionButton
         type={ALCOHOL_UNIT_ACTION_TYPE}
-        imageUrl={'https://www.iconfinder.com/data/icons/american-food/48/v-51-512.png'}
+        imageUrl="https://www.iconfinder.com/data/icons/american-food/48/v-51-512.png"
+        text="Add custom drink"
       />
     </View>
   );

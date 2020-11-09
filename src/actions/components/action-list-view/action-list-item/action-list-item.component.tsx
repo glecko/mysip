@@ -24,21 +24,24 @@ const ActionListItem = (props: ActionListItemModel) => {
       </View>
     );
     return [
-      <TouchableHighlight onPress={() => setEditDialogVisible(true)} style={[styles.actionButton, { backgroundColor: 'lightseagreen' }]}>
-        <Icon size={30} name="edit" color="white" />
-      </TouchableHighlight>,
+      <View>
+        <TouchableHighlight onPress={() => setEditDialogVisible(true)} style={[styles.actionButton, { backgroundColor: 'lightseagreen' }]}>
+          <Icon size={30} name="edit" color="white" />
+        </TouchableHighlight>
+        <ActionEditDialog
+          action={action as ActionStub}
+          visible={editDialogVisible}
+          onDialogConfirm={onEditDialogClose}
+          onDismiss={onEditDialogClose}
+          title="Edit drink entry"
+        />
+      </View>,
       <AlertConfirmButton
         onConfirm={deleteCurrentAction}
         alertText={alertText}
         alertTitle="Delete action?"
         renderContentFn={renderButtonContentFn}
       />,
-      <ActionEditDialog
-        action={action as ActionStub}
-        visible={editDialogVisible}
-        onDialogConfirm={onEditDialogClose}
-        onDismiss={onEditDialogClose}
-      />
     ];
   };
 

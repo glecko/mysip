@@ -10,7 +10,3 @@ export interface FullActionRegisterButtonModel extends ActionRegisterButtonModel
   bottomRightText?: string;
   bottomLeftText?: string;
 }
-
-export interface CustomActionRegisterButtonModel extends ActionRegisterButtonModel {
-
-}
