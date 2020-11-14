@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 const IntervalMonitorsContainerStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: '35%',
+    marginTop: 16,
+    marginBottom: 16
   },
   leftContainer: {
     flex: 3,
@@ -24,6 +25,7 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
     alignItems: 'center',
   },
   bloodConcentrationContainer: {
+    marginTop: 16,
     alignItems: 'center',
   },
   intervalDescriptionText: {

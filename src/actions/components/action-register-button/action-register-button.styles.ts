@@ -1,10 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const ActionRegisterButtonStyles = StyleSheet.create({
-  container: {
-    backgroundColor: 'lightgray',
-    borderWidth: 2,
-    borderColor: 'black',
+  containerDefault: {
     borderRadius: 10,
     width: 110,
     padding: 5,
@@ -14,7 +11,7 @@ export const ActionRegisterButtonStyles = StyleSheet.create({
     width: '100%',
   },
   mainText: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   bottomRightText: {},
   bottomLeftText: {},

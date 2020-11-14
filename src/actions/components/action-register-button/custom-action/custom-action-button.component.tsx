@@ -4,7 +4,7 @@ import { ActionRegisterButtonModel } from '../action-register-button.model';
 import { ActionRegisterButtonStyles, ActionRegisterImageButtonStyles } from '../action-register-button.styles';
 import ImageButton from '../../../../shared/components/image-button/image-button.component';
 import ActionEditDialog from '../../action-edit-dialog/action-edit-dialog.component';
-import { ActionStub } from '../../action-edit-dialog/action-edit-dialog.model';
+import { ActionStub } from '../../../models/models';
 
 const CustomActionButton = (props: ActionRegisterButtonModel) => {
   const [visible, setVisible] = useState(false);
@@ -32,7 +32,7 @@ const CustomActionButton = (props: ActionRegisterButtonModel) => {
   };
   return (
     <View>
-      <View style={ActionRegisterButtonStyles.container}>
+      <View style={props.style ? props.style : ActionRegisterButtonStyles.containerDefault}>
         <ImageButton onPress={() => setVisible(true)} imageUrl={props.imageUrl} styles={styles} textElement={textElement} />
       </View>
       <ActionEditDialog

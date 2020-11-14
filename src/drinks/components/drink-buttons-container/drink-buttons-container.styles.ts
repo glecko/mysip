@@ -5,7 +5,7 @@ const DrinkButtonsContainerStyles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
-  },
+  }
 });
 
 export default DrinkButtonsContainerStyles;

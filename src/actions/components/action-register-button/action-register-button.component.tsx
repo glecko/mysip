@@ -25,7 +25,7 @@ const ActionRegisterButton = (props: FullActionRegisterButtonModel) => {
     container: ActionRegisterImageButtonStyles.container,
   };
   return (
-    <View style={ActionRegisterButtonStyles.container}>
+    <View style={props.style ? props.style : ActionRegisterButtonStyles.containerDefault}>
       <ImageButton
         onPress={() => createEmptyAction(props.type, props.amount, props.subtype)}
         imageUrl={props.imageUrl}
