@@ -25,7 +25,6 @@ function getChartData(actions: Results<ActionModel>, aggregationFormat: string):
 }
 
 const ActionTimelineChart = (props: ActionTimelineChartModel) => {
-
   const [actions, setActions] = useState(
     getChartActions(props)
   );

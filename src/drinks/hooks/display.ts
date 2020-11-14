@@ -1,5 +1,6 @@
-import { ALCOHOL_ML_TO_UNITS_CONVERSION, AlcoholicDrinkModel } from '../models/model';
+import { AlcoholicDrinkModel } from '../models/model';
 import { capitalize, displayPercentage } from '../../shared/utils/string';
+import { ALCOHOL_ML_TO_UNITS_CONVERSION } from '../data/constants';
 
 export function getAlcoholUnitsForDrink(drink: AlcoholicDrinkModel) {
   return drink.volume * drink.content * ALCOHOL_ML_TO_UNITS_CONVERSION;

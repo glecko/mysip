@@ -8,7 +8,6 @@ function getMonitorActions(props: IntervalMonitorModel) {
 }
 
 const IntervalMonitor = (props: IntervalMonitorModel) => {
-
   const [actions, setActions] = useState(
     getMonitorActions(props)
   );
@@ -24,8 +23,12 @@ const IntervalMonitor = (props: IntervalMonitorModel) => {
   const totalAmount = actions.reduce((acc, action) => {
     return acc + action.amount;
   }, 0);
+
+  const textStyle = { ...props.style };
+  if (props.threshold && totalAmount >= props.threshold) textStyle.color = props.aboveThresholdColor;
+
   return (
-    <Text style={props.style}>{totalAmount.toFixed(1)}</Text>
+    <Text style={textStyle}>{totalAmount.toFixed(1)}</Text>
   );
 };
 

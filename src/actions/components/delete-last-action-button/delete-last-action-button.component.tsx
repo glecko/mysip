@@ -2,10 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { DeleteLastActionButtonModel } from './delete-last-action-button.model';
 import AlertConfirmButton from '../../../shared/components/alert-confirm-button/alert-confirm-button.component';
-import {
-  displayAction,
-} from '../../models/schema';
 import { deleteLastAction, getLastAction } from '../../hooks/application';
+import { displayAction } from '../../hooks/display';
 
 function getAlertText(): string {
   const entryToDelete = getLastAction();

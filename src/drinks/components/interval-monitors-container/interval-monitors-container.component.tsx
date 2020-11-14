@@ -4,14 +4,16 @@ import IntervalMonitor from '../../../actions/components/interval-monitor/interv
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
 import DeleteLastDrinkButton from '../delete-last-drink/delete-last-drink-button.component';
 import styles from './interval-monitors-container.styles';
+import { IntervalModel } from '../../../actions/hooks/aggregation/model';
+import { DAILY_ALCOHOL_UNITS_THRESHOLD, WEEKLY_ALCOHOL_UNITS_THRESHOLD } from '../../data/constants';
 
-function getTodayInterval() {
+function getTodayInterval(): IntervalModel {
   const start = new Date();
-  start.setHours(0);
+  start.setHours(start.getHours() - 24);
   return { start };
 }
 
-function getLastWeekInterval() {
+function getLastWeekInterval(): IntervalModel {
   const start = new Date();
   start.setDate(start.getDate() - 7);
   return { start };
@@ -44,15 +46,19 @@ const IntervalMonitorsContainer = () => {
           type={ALCOHOL_UNIT_ACTION_TYPE}
           interval={todayInterval}
           style={styles.monitorText}
+          threshold={DAILY_ALCOHOL_UNITS_THRESHOLD}
+          aboveThresholdColor="red"
         />
         <Text style={styles.monitorSubheader}>Alcohol units</Text>
-        <Text style={styles.intervalDescriptionText}>Today</Text>
+        <Text style={styles.intervalDescriptionText}>Last 24h</Text>
       </View>
       <View style={styles.rightContainer}>
         <IntervalMonitor
           type={ALCOHOL_UNIT_ACTION_TYPE}
           interval={lastWeekInterval}
           style={styles.monitorText}
+          threshold={WEEKLY_ALCOHOL_UNITS_THRESHOLD}
+          aboveThresholdColor="red"
         />
         <Text style={styles.monitorSubheader}>Alcohol units</Text>
         <Text style={styles.intervalDescriptionText}>Last 7 days</Text>
