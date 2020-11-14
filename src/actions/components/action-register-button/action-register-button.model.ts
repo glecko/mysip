@@ -1,8 +1,8 @@
-import { ViewStyle } from 'react-native';
+import { ImageSourcePropType, ViewStyle } from 'react-native';
 
 export interface ActionRegisterButtonModel {
   type: string;
-  imageUrl?: string;
+  image?: ImageSourcePropType;
   text?: string;
   style?: ViewStyle;
 }

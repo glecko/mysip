@@ -33,7 +33,7 @@ const CustomActionButton = (props: ActionRegisterButtonModel) => {
   return (
     <View>
       <View style={props.style ? props.style : ActionRegisterButtonStyles.containerDefault}>
-        <ImageButton onPress={() => setVisible(true)} imageUrl={props.imageUrl} styles={styles} textElement={textElement} />
+        <ImageButton onPress={() => setVisible(true)} image={props.image} styles={styles} textElement={textElement} />
       </View>
       <ActionEditDialog
         title={mainText}

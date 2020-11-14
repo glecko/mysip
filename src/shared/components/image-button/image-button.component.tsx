@@ -12,10 +12,10 @@ const ImageButton = (props: ImageButtonModel) => (
       onPress={props.onPress}
     >
       {
-        props.imageUrl
+        props.image || props.imageUrl
           ? (
             <Image
-              source={{ uri: props.imageUrl }}
+              source={props.image ? props.image : { uri: props.imageUrl }}
               style={props.styles ? props.styles.image : undefined}
             />
           ) : undefined

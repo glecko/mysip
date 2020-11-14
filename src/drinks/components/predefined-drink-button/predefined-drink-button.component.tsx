@@ -20,7 +20,7 @@ const PredefinedDrinkButton = (props: AlcoholicDrinkModel) => {
       type={ALCOHOL_UNIT_ACTION_TYPE}
       subtype={props.name}
       amount={amount}
-      imageUrl={props.imageUrl}
+      image={props.image}
       text={text}
       bottomRightText={bottomRightText}
       bottomLeftText={bottomLeftText}
