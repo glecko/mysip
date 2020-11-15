@@ -1,10 +1,12 @@
 import { Results } from 'realm';
-import { ActionModel } from '../../models/schema';
-import { ActionsAgregatedByDateModel } from './model';
 import moment from 'moment';
+import { ActionModel } from '../../models/schema';
+import { ActionsAgregatedByDateModel, IntervalModel } from './model';
+import { uniqueAggregationsInInterval } from '../../../shared/utils/date';
+import { sortActionsByDate } from '../sorting';
 
 export function aggregatedActionsByDate(actions: Results<ActionModel>, aggregationFormat: string): ActionsAgregatedByDateModel[] {
-  const sortedActions = actions.filter(() => true).sort((actionA, actionB) => actionA.date.getTime() - actionB.date.getTime());
+  const sortedActions = sortActionsByDate(actions);
   return sortedActions.reduce((acc, action) => {
     const formattedDate = moment(action.date).format(aggregationFormat);
     const existingAggregation = acc.find((aggregation) => aggregation.formattedDate === formattedDate);
@@ -15,4 +17,18 @@ export function aggregatedActionsByDate(actions: Results<ActionModel>, aggregati
     }
     return acc;
   }, [] as ActionsAgregatedByDateModel[]);
+}
+
+export function aggregatedActionsInInterval(
+  actions: Results<ActionModel>,
+  aggregationFormat: string,
+  interval: IntervalModel
+): ActionsAgregatedByDateModel[] {
+  const aggregatedActions = aggregatedActionsByDate(actions, aggregationFormat);
+  if (!interval.start || !interval.end) return aggregatedActions;
+  const aggregations = uniqueAggregationsInInterval(interval, aggregationFormat);
+  return aggregations.map((formattedDate: string) => {
+    const dateActions = aggregatedActions.find((aggrAction) => aggrAction.formattedDate === formattedDate);
+    return { formattedDate, actions: dateActions ? dateActions.actions : [] };
+  });
 }

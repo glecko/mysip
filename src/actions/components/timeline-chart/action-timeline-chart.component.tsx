@@ -3,17 +3,23 @@ import { BarChart } from 'react-native-chart-kit';
 import { Dimensions, View } from 'react-native';
 import { ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
-import { aggregatedActionsByDate } from '../../hooks/aggregation/hooks';
+import { aggregatedActionsInInterval } from '../../hooks/aggregation/hooks';
 import { ActionTimelineChartModel } from './action-timeline-chart.model';
 import { ActionModel } from '../../models/schema';
 import { getActions } from '../../hooks/application';
+import { IntervalModel } from '../../hooks/aggregation/model';
+import { getFirstAction, getLastAction } from '../../hooks/sorting';
 
 function getChartActions(props: ActionTimelineChartModel) {
   return getActions(props.type, undefined, props.interval);
 }
 
-function getChartData(actions: Results<ActionModel>, aggregationFormat: string): ChartData {
-  const aggregatedActions = aggregatedActionsByDate(actions, aggregationFormat);
+function getChartData(actions: Results<ActionModel>, aggregationFormat: string, interval: IntervalModel): ChartData {
+  const actionsInterval: IntervalModel = {
+    start: interval?.start ? interval.start : getFirstAction(actions)?.date,
+    end: interval?.end ? interval.end : getLastAction(actions)?.date
+  };
+  const aggregatedActions = aggregatedActionsInInterval(actions, aggregationFormat, actionsInterval);
   const labels = aggregatedActions.map((dateActions) => dateActions.formattedDate);
   const amounts = aggregatedActions.map((dateActions) => dateActions.actions.reduce((acc, action) => acc + action.amount, 0));
   return {
@@ -37,7 +43,7 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
     });
   }, [props.type, props.aggregationFormat, props.interval]);
 
-  const data = getChartData(actions, props.aggregationFormat);
+  const data = getChartData(actions, props.aggregationFormat, props.interval);
   return (
     <View>
       <BarChart
