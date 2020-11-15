@@ -18,6 +18,7 @@ const HistoryView = () => (
         color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
         fillShadowGradientOpacity: 0.8,
         decimalPlaces: 1,
+        barPercentage: 0.75,
       }}
     />
     <ScrollView

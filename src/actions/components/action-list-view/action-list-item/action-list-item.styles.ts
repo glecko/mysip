@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const ActionListItemStyles = StyleSheet.create({
   swipeRowFront: {
+    borderColor: 'gray',
+    borderWidth: 0.5,
     alignItems: 'center',
-    backgroundColor: '#CCC',
     justifyContent: 'center',
-    height: 40,
+    height: 50,
   },
   actionButton: {
     height: '100%',

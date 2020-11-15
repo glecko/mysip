@@ -9,6 +9,7 @@ const ConfigurableTimelineChartStyles = StyleSheet.create({
     borderRadius: 15,
     padding: 3,
     marginBottom: 16,
+    marginTop: 16
   },
   container: {
     alignItems: 'center',

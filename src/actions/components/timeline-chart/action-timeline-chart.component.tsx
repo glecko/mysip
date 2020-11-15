@@ -9,6 +9,7 @@ import { ActionModel } from '../../models/schema';
 import { getActions } from '../../hooks/application';
 import { IntervalModel } from '../../hooks/aggregation/model';
 import { getFirstAction, getLastAction } from '../../hooks/sorting';
+import styles from './action-timeline-chart.styles';
 
 function getChartActions(props: ActionTimelineChartModel) {
   return getActions(props.type, undefined, props.interval);
@@ -52,6 +53,8 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
         width={Dimensions.get('window').width}
         height={220}
         fromZero
+        withInnerLines={false}
+        style={styles.chart}
       />
     </View>
   );
