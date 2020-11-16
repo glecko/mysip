@@ -4,8 +4,6 @@ export const ActionRegisterButtonStyles = StyleSheet.create({
   containerDefault: {
     borderRadius: 10,
     width: 110,
-    padding: 5,
-    margin: 5,
   },
   textContainer: {
     width: '100%',
@@ -30,7 +28,7 @@ export const ActionRegisterImageButtonStyles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    margin: 5,
+    padding: 10
   },
   container: {},
 });

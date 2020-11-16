@@ -6,7 +6,6 @@ const PredefinedDrinkButtonStyles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 10,
     width: 115,
-    padding: 5,
     margin: 5,
   },
 });
