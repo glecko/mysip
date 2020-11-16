@@ -5,6 +5,7 @@ export interface ActionModel {
   type: string;
   subtype: string;
   note?: string;
+  registerDate: Date;
 }
 
 export const ActionSchema = {
@@ -17,5 +18,6 @@ export const ActionSchema = {
     type: 'string',
     subtype: 'string',
     note: 'string?',
+    registerDate: 'date',
   },
 };

@@ -1,9 +1,26 @@
 import Realm from 'realm';
-import { ActionSchema } from '../../actions/models/schema';
+import { REALM_SCHEMAS } from './migrations';
 
 class RealmServiceClass {
+  private static executeMigrations() {
+    // The first schema to update to is the current schema version
+    // since the first schema in our array is at nextSchemaIndex:
+    let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath);
+
+    // If Realm.schemaVersion() returned -1, it means this is a new Realm file
+    // so no migration is needed.
+    if (nextSchemaIndex !== -1) {
+      while (nextSchemaIndex < REALM_SCHEMAS.length) {
+        const migratedRealm = new Realm(REALM_SCHEMAS[nextSchemaIndex]);
+        nextSchemaIndex += 1;
+        migratedRealm.close();
+      }
+    }
+  }
+
   constructor() {
-    this.realmInstance = new Realm({ schema: [ActionSchema] });
+    RealmServiceClass.executeMigrations();
+    this.realmInstance = new Realm(REALM_SCHEMAS[REALM_SCHEMAS.length - 1]);
   }
 
   realmInstance: Realm;
@@ -27,8 +44,7 @@ class RealmServiceClass {
     const instance = this.getEntityById<T>(model, id, true);
     this.realmInstance.write(() => {
       for (const [key, value] of Object.entries(data)) {
-        if (key === 'id') continue;
-        instance[key] = value;
+        if (key !== 'id') instance[key] = value;
       }
     });
   }

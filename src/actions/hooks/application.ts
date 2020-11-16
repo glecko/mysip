@@ -19,6 +19,7 @@ export function createActionModel(
     amount,
     subtype,
     note,
+    registerDate: new Date(),
   };
 }
 
@@ -32,13 +33,14 @@ export function createActionFromStub(
     amount: actionStub.amount,
     subtype: actionStub.subtype,
     note: actionStub.note,
+    registerDate: new Date(),
   };
 }
 
 export function getLastAction(): ActionModel {
   return RealmService.getLastModelEntry<ActionModel>(
     ActionSchema.name,
-    'date'
+    'registerDate'
   );
 }
 
@@ -57,8 +59,8 @@ export function deleteAction(action: ActionModel) {
 }
 
 export function deleteLastAction(type: string) {
-  RealmService.deleteObjectsByQuery(ActionSchema.name, `type = "${type}" SORT(date DESC) LIMIT(1)`);
-};
+  RealmService.deleteObjectsByQuery(ActionSchema.name, `type = "${type}" SORT(registerDate DESC) LIMIT(1)`);
+}
 
 export function upsertAction(actionStub: ActionStub) {
   const action = createActionFromStub(actionStub);
