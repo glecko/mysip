@@ -8,8 +8,13 @@ import ActionListView from '../actions/components/action-list-view/action-list-v
 import ConfigurableActionTimelineChart from '../actions/components/configurable-timeline-chart/configurable-timeline-chart.component';
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../drinks/models/model';
 
+const styles = StyleSheet.create({
+  scrollView: {},
+  container: { flex: 1 }
+});
+
 const HistoryView = () => (
-  <View>
+  <View style={styles.container}>
     <ConfigurableActionTimelineChart
       type={ALCOHOL_UNIT_ACTION_TYPE}
       chartConfig={{
@@ -21,17 +26,10 @@ const HistoryView = () => (
         barPercentage: 0.75,
       }}
     />
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      style={styles.scrollView}
-    >
+    <ScrollView style={styles.scrollView}>
       <ActionListView name={ALCOHOL_UNIT_ACTION_TYPE} />
     </ScrollView>
   </View>
 );
-
-const styles = StyleSheet.create({
-  scrollView: {},
-});
 
 export default HistoryView;

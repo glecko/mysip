@@ -11,15 +11,13 @@ import IntervalMonitorsContainer
 const styles = StyleSheet.create({
   scrollView: {},
   body: {},
+  container: { flex: 1 }
 });
 
 const HomeView = () => (
-  <View>
+  <View style={styles.container}>
     <IntervalMonitorsContainer />
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      style={styles.scrollView}
-    >
+    <ScrollView style={styles.scrollView}>
       <View style={styles.body}>
         <DrinkButtonsContainer />
       </View>
