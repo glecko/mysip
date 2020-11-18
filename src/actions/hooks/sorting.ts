@@ -1,5 +1,5 @@
-import { Results } from "realm";
-import { ActionModel } from '../models/schema';
+import { Results } from 'realm';
+import { ActionModel } from '../models/models';
 
 export function sortActionsByDate(actions: Results<ActionModel>): ActionModel[] {
   return actions.filter(() => true).sort((actionA, actionB) => actionA.date.getTime() - actionB.date.getTime());

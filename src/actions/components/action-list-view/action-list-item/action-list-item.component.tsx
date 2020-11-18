@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
+// @ts-ignore
 import Swipeable from 'react-native-swipeable-row';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './action-list-item.styles';
 import { ActionListItemModel } from './action-list-item.model';
-import { ActionModel } from '../../../models/schema';
 import AlertConfirmButton from '../../../../shared/components/alert-confirm-button/alert-confirm-button.component';
 import ActionEditDialog from '../../action-edit-dialog/action-edit-dialog.component';
 import { displayAction } from '../../../hooks/display';
-import { ActionStub } from '../../../models/models';
+import { ActionModel, ActionStub } from '../../../models/models';
 import { deleteAction } from '../../../hooks/application';
 
 const ActionListItem = (props: ActionListItemModel) => {

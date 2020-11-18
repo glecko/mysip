@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView, FlatList, ListRenderItemInfo
 } from 'react-native';
-import { ActionModel } from '../../models/schema';
 import { ActionListViewModel } from './action-list-view.model';
 import ActionListItem from './action-list-item/action-list-item.component';
 import { getActions } from '../../hooks/application';
+import { ActionModel } from '../../models/models';
 
 function buildInitialState(filterType: string, limit?: number) {
   return getActions(filterType, limit);

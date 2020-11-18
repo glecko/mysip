@@ -30,6 +30,7 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
       amount: parseFloat(amount),
       subtype,
       note,
+      registerDate: props.action.registerDate
     });
     resetDialog();
     props.onDialogConfirm();
@@ -41,7 +42,7 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
   };
 
   const onDateSelectionChange = (event: Event, selectedDate?: Date) => {
-    const currentDate = selectedDate ? selectedDate : date;
+    const currentDate = selectedDate || date;
     setDate(currentDate);
   };
 

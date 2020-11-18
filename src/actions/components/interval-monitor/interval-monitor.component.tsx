@@ -20,9 +20,7 @@ const IntervalMonitor = (props: IntervalMonitorModel) => {
     });
   }, [props.type, props.interval]);
 
-  const totalAmount = actions.reduce((acc, action) => {
-    return acc + action.amount;
-  }, 0);
+  const totalAmount = actions.reduce((acc, action) => acc + action.amount, 0);
 
   const textStyle = { ...props.style };
   if (props.threshold && totalAmount >= props.threshold) textStyle.color = props.aboveThresholdColor;

@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Button, Alert, TouchableHighlight } from 'react-native';
+import {
+  View, Button, Alert, TouchableHighlight
+} from 'react-native';
 import { AlertConfirmButtonModel } from './alert-confirm-button.model';
 
 const AlertConfirmButton = (props: AlertConfirmButtonModel) => {

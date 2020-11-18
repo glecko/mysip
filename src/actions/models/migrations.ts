@@ -1,5 +1,6 @@
 import { Results } from 'realm';
-import { ActionModel, ActionSchema } from './schema';
+import { ActionSchema } from './schema';
+import { ActionModel } from './models';
 
 export function actionMigrationFunction(migrationFn: (existingActions: Results<ActionModel>, newActions: Results<ActionModel>) => void) {
   return (oldRealm: Realm, newRealm: Realm) => {
@@ -11,6 +12,7 @@ export function actionMigrationFunction(migrationFn: (existingActions: Results<A
 
 export function addRegisterDate(existingActions: Results<ActionModel>, newActions: Results<ActionModel>) {
   newActions.forEach((action) => {
+    // eslint-disable-next-line no-param-reassign
     action.registerDate = action.date;
   });
 }

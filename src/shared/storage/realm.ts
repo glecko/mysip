@@ -1,5 +1,6 @@
 import Realm from 'realm';
 import { REALM_SCHEMAS } from './migrations';
+import { RealmEntry } from './models';
 
 class RealmServiceClass {
   private static executeMigrations() {
@@ -25,7 +26,7 @@ class RealmServiceClass {
 
   realmInstance: Realm;
 
-  create<T>(model: string, data: { [property: string]: any }) {
+  create(model: string, data: { [property: string]: any }) {
     this.realmInstance.write(() => {
       this.realmInstance.create(model, data, Realm.UpdateMode.All);
     });
@@ -40,16 +41,17 @@ class RealmServiceClass {
     });
   }
 
-  update<T>(model: string, id: string, data: { [property: string]: any }) {
+  update<T extends RealmEntry>(model: string, id: string, data: Partial<T>) {
     const instance = this.getEntityById<T>(model, id, true);
     this.realmInstance.write(() => {
-      for (const [key, value] of Object.entries(data)) {
+      Object.entries(data).forEach(([key, value]) => {
+        // @ts-ignore
         if (key !== 'id') instance[key] = value;
-      }
+      });
     });
   }
 
-  upsert<T>(model: string, data: { [property: string]: any }) {
+  upsert<T extends RealmEntry>(model: string, data: Partial<T>) {
     if (data.id) {
       const entity = this.getEntityById(model, data.id, false);
       if (entity) {
@@ -60,14 +62,14 @@ class RealmServiceClass {
     this.create(model, data);
   }
 
-  getEntityById<T>(model: string, id: string, throwIfNotFound: boolean) {
+  getEntityById<T extends RealmEntry>(model: string, id: string, throwIfNotFound: boolean) {
     const collection = this.realmInstance.objects<T>(model);
     const [entity] = collection.filtered(`id = '${id}'`);
     if (!entity && throwIfNotFound) throw Error(`Model '${model}' with ID ${id} could not be found in the database.`);
     return entity;
   }
 
-  getLastModelEntry<T>(model: string, dateProperty: string): T & Realm.Object {
+  getLastModelEntry<T extends RealmEntry>(model: string, dateProperty: string): T & Realm.Object {
     const collection = this.realmInstance.objects<T>(model);
     const [lastEntry] = collection.sorted(dateProperty, true);
     return lastEntry;

@@ -1,9 +1,9 @@
 import { Results } from 'realm';
 import moment from 'moment';
-import { ActionModel } from '../../models/schema';
 import { ActionsAgregatedByDateModel, IntervalModel } from './model';
 import { uniqueAggregationsInInterval } from '../../../shared/utils/date';
 import { sortActionsByDate } from '../sorting';
+import { ActionModel } from '../../models/models';
 
 export function aggregatedActionsByDate(actions: Results<ActionModel>, aggregationFormat: string): ActionsAgregatedByDateModel[] {
   const sortedActions = sortActionsByDate(actions);

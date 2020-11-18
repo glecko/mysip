@@ -1,5 +1,5 @@
-import { IntervalModel } from '../../hooks/aggregation/model';
 import { ChartConfig } from 'react-native-chart-kit/dist/HelperTypes';
+import { IntervalModel } from '../../hooks/aggregation/model';
 
 export interface ActionTimelineChartModel {
   type: string;

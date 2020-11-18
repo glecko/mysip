@@ -1,4 +1,5 @@
 import React from 'react';
+import { ViewStyle } from 'react-native';
 import ActionRegisterButton from '../../../actions/components/action-register-button/action-register-button.component';
 import { ALCOHOL_UNIT_ACTION_TYPE, AlcoholicDrinkModel } from '../../models/model';
 import {
@@ -7,7 +8,6 @@ import {
   getDrinkDisplayName, getDrinkDisplayVolume
 } from '../../hooks/display';
 import buttonStyles from './predefined-drink-button.styles';
-import { ViewStyle } from 'react-native';
 
 const PredefinedDrinkButton = (props: AlcoholicDrinkModel) => {
   const amount = getAlcoholUnitsForDrink(props);

@@ -2,9 +2,9 @@ import 'react-native-get-random-values';
 import { Results, Object } from 'realm';
 import { v4 as uuidv4 } from 'uuid';
 import { RealmService } from '../../shared/storage/realm';
-import { ActionModel, ActionSchema } from '../models/schema';
-import { IntervalModel } from './model';
-import { ActionStub } from '../models/models';
+import { ActionSchema } from '../models/schema';
+import { ActionModel, ActionStub } from '../models/models';
+import { IntervalModel } from './aggregation/model';
 
 export function createActionModel(
   type: string,

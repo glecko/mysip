@@ -5,11 +5,11 @@ import { ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
 import { aggregatedActionsInInterval } from '../../hooks/aggregation/hooks';
 import { ActionTimelineChartModel } from './action-timeline-chart.model';
-import { ActionModel } from '../../models/schema';
 import { getActions } from '../../hooks/application';
 import { IntervalModel } from '../../hooks/aggregation/model';
 import { getFirstAction, getLastAction } from '../../hooks/sorting';
 import styles from './action-timeline-chart.styles';
+import { ActionModel } from '../../models/models';
 
 function getChartActions(props: ActionTimelineChartModel) {
   return getActions(props.type, undefined, props.interval);
@@ -55,6 +55,8 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
         fromZero
         withInnerLines={false}
         style={styles.chart}
+        yAxisLabel=""
+        yAxisSuffix=""
       />
     </View>
   );

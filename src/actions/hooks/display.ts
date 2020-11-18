@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { ActionModel } from '../models/schema';
+import { ActionModel } from '../models/models';
 
 export function displayAction(
   action: ActionModel,
