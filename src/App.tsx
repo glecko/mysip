@@ -21,7 +21,7 @@ IonIcon.loadFont();
 MaterialCommunityIcon.loadFont();
 MaterialIcon.loadFont();
 
-const App: () => React$Node = () => (
+const App: () => React.ReactElement = () => (
   <PaperProvider>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView style={{ flex: 1 }}>
