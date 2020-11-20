@@ -3,7 +3,7 @@ import { BarChart } from 'react-native-chart-kit';
 import { Dimensions, View } from 'react-native';
 import { ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
-import { aggregatedActionsInInterval } from '../../hooks/aggregation/hooks';
+import { aggregateActions } from '../../hooks/aggregation/hooks';
 import { ActionTimelineChartModel } from './action-timeline-chart.model';
 import { getActions, listenToActionCollection } from '../../hooks/application';
 import { IntervalModel } from '../../hooks/aggregation/model';
@@ -11,13 +11,13 @@ import { getFirstAction, getLastAction } from '../../hooks/sorting';
 import styles from './action-timeline-chart.styles';
 import { ActionModel } from '../../models/models';
 
-function getChartData(actions: Results<ActionModel>, aggregationFormat: string, interval: IntervalModel): ChartData {
+function getChartData(actions: Results<ActionModel>, props: ActionTimelineChartModel): ChartData {
   const actionsInterval: IntervalModel = {
-    start: interval?.start ? interval.start : getFirstAction(actions)?.date,
-    end: interval?.end ? interval.end : getLastAction(actions)?.date
+    start: props.interval?.start ? props.interval.start : getFirstAction(actions)?.date,
+    end: props.interval?.end ? props.interval.end : getLastAction(actions)?.date
   };
-  const aggregatedActions = aggregatedActionsInInterval(actions, aggregationFormat, actionsInterval);
-  const labels = aggregatedActions.map((dateActions) => dateActions.formattedDate);
+  const aggregatedActions = aggregateActions(actions, props.formatIntervalFn, actionsInterval, props.unitOfTime);
+  const labels = aggregatedActions.map((dateActions) => dateActions.formattedName);
   const amounts = aggregatedActions.map((dateActions) => dateActions.actions.reduce((acc, action) => acc + action.amount, 0));
   return {
     labels,
@@ -32,10 +32,10 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
 
   useEffect(
     () => listenToActionCollection(setActions, props.type, undefined, props.interval),
-    [props.type, props.interval]
+    [props.type, props.interval, props.unitOfTime, props.formatIntervalFn]
   );
 
-  const data = getChartData(actions, props.aggregationFormat, props.interval);
+  const data = getChartData(actions, props);
   return (
     <View>
       <BarChart
@@ -44,7 +44,6 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
         width={Dimensions.get('window').width}
         height={220}
         fromZero
-        withInnerLines={false}
         style={styles.chart}
         yAxisLabel=""
         yAxisSuffix=""

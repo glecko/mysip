@@ -1,34 +1,33 @@
 import { Results } from 'realm';
-import moment from 'moment';
-import { ActionsAgregatedByDateModel, IntervalModel } from './model';
-import { uniqueAggregationsInInterval } from '../../../shared/utils/date';
+import { unitOfTime } from 'moment';
+import { ActionsAgregatedByTimeUnitModel, IntervalModel } from './model';
 import { sortActionsByDate } from '../sorting';
 import { ActionModel } from '../../models/models';
-
-export function aggregatedActionsByDate(actions: Results<ActionModel>, aggregationFormat: string): ActionsAgregatedByDateModel[] {
-  const sortedActions = sortActionsByDate(actions);
-  return sortedActions.reduce((acc, action) => {
-    const formattedDate = moment(action.date).format(aggregationFormat);
-    const existingAggregation = acc.find((aggregation) => aggregation.formattedDate === formattedDate);
-    if (existingAggregation) {
-      existingAggregation.actions.push(action);
-    } else {
-      acc.push({ formattedDate, actions: [action] });
-    }
-    return acc;
-  }, [] as ActionsAgregatedByDateModel[]);
-}
+import { timeUnitAggregationsInInterval } from '../../../shared/utils/date';
 
 export function aggregatedActionsInInterval(
-  actions: Results<ActionModel>,
-  aggregationFormat: string,
-  interval: IntervalModel
-): ActionsAgregatedByDateModel[] {
-  const aggregatedActions = aggregatedActionsByDate(actions, aggregationFormat);
-  if (!interval.start || !interval.end) return aggregatedActions;
-  const aggregations = uniqueAggregationsInInterval(interval, aggregationFormat);
-  return aggregations.map((formattedDate: string) => {
-    const dateActions = aggregatedActions.find((aggrAction) => aggrAction.formattedDate === formattedDate);
-    return { formattedDate, actions: dateActions ? dateActions.actions : [] };
+  actions: ActionModel[],
+  interval: IntervalModel,
+  unit: unitOfTime.Base,
+  formatIntervalFn: (aggregation: IntervalModel) => string,
+): ActionsAgregatedByTimeUnitModel[] {
+  const aggregatedIntervals = timeUnitAggregationsInInterval(interval, unit, formatIntervalFn);
+  return aggregatedIntervals.map((aggregation) => {
+    const intervalActions = actions.filter((action) => aggregation.start <= action.date && action.date <= aggregation.end);
+    return { ...aggregation, actions: intervalActions };
   });
+}
+
+export function aggregateActions(
+  actions: Results<ActionModel>,
+  formatIntervalFn: (aggregation: IntervalModel) => string,
+  interval: IntervalModel,
+  unit: unitOfTime.Base
+): ActionsAgregatedByTimeUnitModel[] {
+  if (actions.length === 0) return [];
+  const sortedActions = sortActionsByDate(actions);
+  const fullInterval = { ...interval };
+  if (!fullInterval.start) fullInterval.start = new Date(sortedActions[0].date);
+  if (!fullInterval.end) fullInterval.end = new Date(sortedActions[sortedActions.length - 1].date);
+  return aggregatedActionsInInterval(sortedActions, interval, unit, formatIntervalFn);
 }

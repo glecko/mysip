@@ -1,7 +1,7 @@
 import { ActionModel } from '../../models/models';
+import { TimeUnitAggregationsModel } from '../../../shared/models/date';
 
-export interface ActionsAgregatedByDateModel {
-  formattedDate: string;
+export interface ActionsAgregatedByTimeUnitModel extends TimeUnitAggregationsModel {
   actions: ActionModel[];
 }
 

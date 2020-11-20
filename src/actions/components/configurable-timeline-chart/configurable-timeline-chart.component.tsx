@@ -31,7 +31,8 @@ const ConfigurableActionTimelineChart = (props: ConfigurableActionTimelineModel)
       <ActionTimelineChart
         type={props.type}
         chartConfig={props.chartConfig}
-        aggregationFormat={intervalOptionData.aggregationFormat}
+        formatIntervalFn={intervalOptionData.formatIntervalFn}
+        unitOfTime={intervalOptionData.unitOfTime}
         interval={interval}
       />
     </View>
