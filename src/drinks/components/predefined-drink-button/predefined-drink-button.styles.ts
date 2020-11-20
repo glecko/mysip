@@ -2,12 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const PredefinedDrinkButtonStyles = StyleSheet.create({
   button: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 10,
-    width: 115,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 1,
+    shadowOpacity: 0.2,
+    elevation: 5,
+    borderRadius: 15,
+    width: 100,
     margin: 5,
-  },
+  }
 });
 
 export default PredefinedDrinkButtonStyles;

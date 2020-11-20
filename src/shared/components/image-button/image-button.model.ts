@@ -5,6 +5,8 @@ export interface ImageButtonModel {
   image?: ImageSourcePropType;
   onPress: () => void;
   textElement?: JSX.Element;
+  onHideUnderlay?: () => void;
+  onShowUnderlay?: () => void;
   styles?: {
     container: ViewStyle;
     button: ViewStyle;

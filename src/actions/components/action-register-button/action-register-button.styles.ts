@@ -1,18 +1,24 @@
 import { StyleSheet } from 'react-native';
 
 export const ActionRegisterButtonStyles = StyleSheet.create({
-  containerDefault: {
-    borderRadius: 10,
-    width: 110,
-  },
   textContainer: {
     width: '100%',
   },
   mainText: {
+    paddingTop: 4,
+    fontSize: 14,
+    fontFamily: 'Helvetica Neue',
+    fontWeight: '500',
     textAlign: 'center',
   },
-  bottomRightText: {},
-  bottomLeftText: {},
+  bottomRightText: {
+    fontSize: 13,
+    fontFamily: 'Helvetica Neue',
+  },
+  bottomLeftText: {
+    fontSize: 13,
+    fontFamily: 'Helvetica Neue',
+  },
   bottomTextContainer: {
     width: '100%',
     flexDirection: 'row',
@@ -22,8 +28,8 @@ export const ActionRegisterButtonStyles = StyleSheet.create({
 
 export const ActionRegisterImageButtonStyles = StyleSheet.create({
   image: {
-    height: 55,
-    width: 55,
+    height: 45,
+    width: 45,
     resizeMode: 'stretch',
   },
   button: {

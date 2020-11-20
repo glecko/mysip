@@ -34,32 +34,32 @@ export const PREDEFINED_DRINKS: AlcoholicDrinkModel[] = [
     volume: 200,
     content: 0.08,
     image: require('@images/drink-icons/beer-glass.png'),
-    buttonColor: '#F6C101'
+    buttonColor: '#fec806'
   },
   {
     name: 'bottle (dark)',
     volume: 330,
     content: 0.08,
     image: require('@images/drink-icons/beer-bottle.png'),
-    buttonColor: '#F6C101'
+    buttonColor: '#fec806'
   },
   {
     name: 'pint (dark)',
     volume: 500,
     content: 0.08,
     image: require('@images/drink-icons/beer-jar.png'),
-    buttonColor: '#F6C101'
+    buttonColor: '#fec806'
   },
   {
-    name: '1/2 wine glass',
-    volume: 100,
+    name: 'wine glass',
+    volume: 200,
     content: 0.12,
     image: require('@images/drink-icons/wine-glass.png'),
     buttonColor: '#ffb9b9'
   },
   {
-    name: 'wine glass',
-    volume: 200,
+    name: '1/2 glass',
+    volume: 100,
     content: 0.12,
     image: require('@images/drink-icons/wine-glass.png'),
     buttonColor: '#ffb9b9'
@@ -76,28 +76,28 @@ export const PREDEFINED_DRINKS: AlcoholicDrinkModel[] = [
     volume: 100,
     content: 0.35,
     image: require('@images/drink-icons/whisky-glass.png'),
-    buttonColor: '#ebebeb'
+    buttonColor: '#e3e3e3'
   },
   {
     name: 'shot',
     volume: 20,
     content: 0.35,
     image: require('@images/drink-icons/shot-glass.png'),
-    buttonColor: '#ebebeb'
+    buttonColor: '#e3e3e3'
   },
   {
     name: 'double shot',
     volume: 40,
     content: 0.35,
     image: require('@images/drink-icons/shot-glass.png'),
-    buttonColor: '#ebebeb'
+    buttonColor: '#e3e3e3'
   },
   {
     name: 'long drink',
     volume: 70,
     content: 0.35,
     image: require('@images/drink-icons/long-drink.png'),
-    buttonColor: '#d94866'
+    buttonColor: '#e995a6'
   },
   {
     name: 'cocktail',
