@@ -80,3 +80,15 @@ export function getActions(filterType: string, limit?: number, interval?: Interv
   }
   return result;
 }
+
+export function listenToActionCollection(setActions: Function, filterType: string, limit?: number, interval?: IntervalModel) {
+  const updateActionsListener = () => {
+    const actions = getActions(filterType, limit, interval);
+    setActions(actions);
+  };
+
+  const actionCollection = getActions(filterType, limit, interval);
+  setActions(actionCollection);
+  actionCollection.addListener(updateActionsListener);
+  return () => actionCollection.removeListener(updateActionsListener);
+}

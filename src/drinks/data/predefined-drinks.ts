@@ -3,7 +3,7 @@ import { AlcoholicDrinkModel } from '../models/model';
 /* eslint-disable global-require */
 export const CUSTOM_DRINKS_BUTTON_PROPERTIES = {
   image: require('@images/drink-icons/random-drinks.png'),
-  buttonColor: 'white',
+  buttonColor: '#cceeff',
   text: 'Add custom drink'
 };
 

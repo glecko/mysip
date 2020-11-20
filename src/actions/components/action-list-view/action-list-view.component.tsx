@@ -4,26 +4,13 @@ import {
 } from 'react-native';
 import { ActionListViewModel } from './action-list-view.model';
 import ActionListItem from './action-list-item/action-list-item.component';
-import { getActions } from '../../hooks/application';
+import { getActions, listenToActionCollection } from '../../hooks/application';
 import { ActionModel } from '../../models/models';
 
-function buildInitialState(filterType: string, limit?: number) {
-  return getActions(filterType, limit);
-}
-
 const ActionListView = (props: ActionListViewModel) => {
-  const [actionsData, setActionsData] = useState(
-    buildInitialState(props.name, props.maxEntries),
-  );
+  const [actionsData, setActionsData] = useState(getActions(props.name, props.maxEntries));
 
-  useEffect(() => {
-    const typeActions = getActions(props.name, props.maxEntries);
-    setActionsData(typeActions);
-    typeActions.addListener(() => {
-      const actions = getActions(props.name, props.maxEntries);
-      setActionsData(actions);
-    });
-  }, [props.name]);
+  useEffect(() => listenToActionCollection(setActionsData, props.name, props.maxEntries), [props.name]);
 
   return (
     <SafeAreaView>

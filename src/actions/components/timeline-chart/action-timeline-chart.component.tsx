@@ -5,15 +5,11 @@ import { ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
 import { aggregatedActionsInInterval } from '../../hooks/aggregation/hooks';
 import { ActionTimelineChartModel } from './action-timeline-chart.model';
-import { getActions } from '../../hooks/application';
+import { getActions, listenToActionCollection } from '../../hooks/application';
 import { IntervalModel } from '../../hooks/aggregation/model';
 import { getFirstAction, getLastAction } from '../../hooks/sorting';
 import styles from './action-timeline-chart.styles';
 import { ActionModel } from '../../models/models';
-
-function getChartActions(props: ActionTimelineChartModel) {
-  return getActions(props.type, undefined, props.interval);
-}
 
 function getChartData(actions: Results<ActionModel>, aggregationFormat: string, interval: IntervalModel): ChartData {
   const actionsInterval: IntervalModel = {
@@ -32,17 +28,12 @@ function getChartData(actions: Results<ActionModel>, aggregationFormat: string, 
 }
 
 const ActionTimelineChart = (props: ActionTimelineChartModel) => {
-  const [actions, setActions] = useState(
-    getChartActions(props)
-  );
+  const [actions, setActions] = useState(getActions(props.type, undefined, props.interval));
 
-  useEffect(() => {
-    const initialActions = getChartActions(props);
-    setActions(initialActions);
-    initialActions.addListener(() => {
-      setActions(getChartActions(props));
-    });
-  }, [props.type, props.aggregationFormat, props.interval]);
+  useEffect(
+    () => listenToActionCollection(setActions, props.type, undefined, props.interval),
+    [props.type, props.interval]
+  );
 
   const data = getChartData(actions, props.aggregationFormat, props.interval);
   return (
