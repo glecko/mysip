@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BarChart } from 'react-native-chart-kit';
 import { Dimensions, View } from 'react-native';
-import { ChartData } from 'react-native-chart-kit/dist/HelperTypes';
+import { ChartConfig, ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
 import { aggregateActions } from '../../hooks/aggregation/hooks';
 import { ActionTimelineChartModel } from './action-timeline-chart.model';
@@ -35,12 +35,13 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
     [props.type, props.interval, props.unitOfTime, props.formatIntervalFn]
   );
 
+  const chartConfig: ChartConfig = { ...props.chartConfig, barPercentage: props.chartBarWidth };
   const data = getChartData(actions, props);
   return (
     <View>
       <BarChart
         data={data}
-        chartConfig={props.chartConfig}
+        chartConfig={chartConfig}
         width={Dimensions.get('window').width}
         height={220}
         fromZero

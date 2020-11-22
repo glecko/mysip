@@ -4,6 +4,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import HomeView from './home';
 import HistoryView from './history';
+import { View } from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -16,14 +17,14 @@ const NavigationComponent = () => (
         name="Home"
         component={HomeView}
         options={{
-          tabBarIcon: () => <IonIcon size={20} name="beer" color="white" />
+          tabBarIcon: () => <View><IonIcon size={22} name="beer" color="white" /></View>
         }}
       />
       <Tab.Screen
         name="History"
         component={HistoryView}
         options={{
-          tabBarIcon: () => <IonIcon size={20} name="bar-chart" color="white" />
+          tabBarIcon: () => <IonIcon size={22} name="bar-chart" color="white" />
         }}
       />
     </Tab.Navigator>

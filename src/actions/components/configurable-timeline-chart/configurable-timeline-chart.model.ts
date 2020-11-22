@@ -14,6 +14,7 @@ export interface TimelineOptionModel {
   formatIntervalFn: (aggregation: IntervalModel) => string;
   intervalFn: Function;
   unitOfTime: unitOfTime.Base;
+  chartBarWidth: number;
 }
 
 export const TIMELINE_CHART_OPTIONS: TimelineOptionModel[] = [
@@ -21,24 +22,28 @@ export const TIMELINE_CHART_OPTIONS: TimelineOptionModel[] = [
     name: 'W',
     formatIntervalFn: (interval) => moment(interval.start).format('ddd'),
     intervalFn: () => currentTimeInterval('week'),
-    unitOfTime: 'days'
+    unitOfTime: 'days',
+    chartBarWidth: 0.75,
   },
   {
     name: 'M',
     formatIntervalFn: (interval) => `${moment(interval.start).format('D')} - ${moment(interval.end).format('D')}`,
     intervalFn: () => currentTimeInterval('month'),
-    unitOfTime: 'week'
+    unitOfTime: 'week',
+    chartBarWidth: 1,
   },
   {
     name: 'Y',
     formatIntervalFn: (interval) => moment(interval.start).format('MMM'),
     intervalFn: () => currentTimeInterval('year'),
-    unitOfTime: 'month'
+    unitOfTime: 'month',
+    chartBarWidth: 0.4,
   },
   {
     name: 'A',
     formatIntervalFn: (interval) => moment(interval.start).format('MMM YY'),
     intervalFn: () => {},
-    unitOfTime: 'month'
+    unitOfTime: 'month',
+    chartBarWidth: 0.5,
   },
 ];

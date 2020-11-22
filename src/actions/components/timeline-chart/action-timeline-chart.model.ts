@@ -8,4 +8,5 @@ export interface ActionTimelineChartModel {
   formatIntervalFn: (aggregation: IntervalModel) => string;
   chartConfig: ChartConfig;
   unitOfTime: unitOfTime.Base;
+  chartBarWidth: number;
 }

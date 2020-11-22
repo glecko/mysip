@@ -34,6 +34,7 @@ const ConfigurableActionTimelineChart = (props: ConfigurableActionTimelineModel)
         formatIntervalFn={intervalOptionData.formatIntervalFn}
         unitOfTime={intervalOptionData.unitOfTime}
         interval={interval}
+        chartBarWidth={intervalOptionData.chartBarWidth}
       />
     </View>
   );
