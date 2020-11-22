@@ -12,19 +12,20 @@ const NavigationComponent = () => (
   <NavigationContainer>
     <Tab.Navigator
       backBehavior="none"
+      barStyle={{ backgroundColor: '#ece5dd', borderTopColor: 'dimgray', borderTopWidth: 0.75 }}
     >
       <Tab.Screen
         name="Home"
         component={HomeView}
         options={{
-          tabBarIcon: () => <View><IonIcon size={22} name="beer" color="white" /></View>
+          tabBarIcon: () => <View><IonIcon size={22} name="beer" color="dimgray" /></View>
         }}
       />
       <Tab.Screen
         name="History"
         component={HistoryView}
         options={{
-          tabBarIcon: () => <IonIcon size={22} name="bar-chart" color="white" />
+          tabBarIcon: () => <IonIcon size={22} name="bar-chart" color="dimgray" />
         }}
       />
     </Tab.Navigator>

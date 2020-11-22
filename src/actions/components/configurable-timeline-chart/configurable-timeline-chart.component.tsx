@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import {
   ConfigurableActionTimelineModel,
   TIMELINE_CHART_OPTIONS,
@@ -18,9 +18,12 @@ const ConfigurableActionTimelineChart = (props: ConfigurableActionTimelineModel)
   };
 
   const buttons = TIMELINE_CHART_OPTIONS.map((option) => (
-    <View style={option.name === intervalOptionData.name ? styles.activeButton : styles.button}>
-      <Button title={option.name} onPress={() => buttonPress(option)} />
-    </View>
+    <TouchableOpacity
+      style={option.name === intervalOptionData.name ? styles.activeButton : styles.button}
+      onPress={() => buttonPress(option)}
+    >
+      <Text style={styles.buttonText}>{option.name}</Text>
+    </TouchableOpacity>
   ));
 
   return (

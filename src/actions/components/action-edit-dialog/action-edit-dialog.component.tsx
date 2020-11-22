@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   Button, Dialog, Portal, TextInput
 } from 'react-native-paper';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { ActionEditDialogModel } from './action-edit-dialog.model';
 import { upsertAction } from '../../hooks/application';
+import DatetimePickerComponent from '../../../shared/components/datetime-picker/datetime-picker.component';
 
 const ActionEditDialog = (props: ActionEditDialogModel) => {
   const [date, setDate] = useState(props.action.date);
@@ -41,23 +41,14 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
     props.onDismiss();
   };
 
-  const onDateSelectionChange = (event: Event, selectedDate?: Date) => {
-    const currentDate = selectedDate || date;
-    setDate(currentDate);
-  };
-
   return (
     <Portal>
       <Dialog visible={props.visible} onDismiss={onDismiss}>
         <Dialog.Title>{title}</Dialog.Title>
         <Dialog.Content>
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            minuteInterval={15}
-            mode="datetime"
-            display="default"
-            onChange={onDateSelectionChange}
+          <DatetimePickerComponent
+            date={date}
+            setDate={setDate}
           />
           <TextInput
             mode="outlined"

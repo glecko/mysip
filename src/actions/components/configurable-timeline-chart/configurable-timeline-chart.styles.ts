@@ -22,6 +22,12 @@ const ConfigurableTimelineChartStyles = StyleSheet.create({
   button: {
     flex: 1,
   },
+  buttonText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    paddingTop: 5,
+    paddingBottom: 5,
+  }
 });
 
 export default ConfigurableTimelineChartStyles;
