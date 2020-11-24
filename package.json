@@ -9,7 +9,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build-android-apk": "./android/gradelew assembleRelease",
+    "build-android-bundle": "./android/gradelew bundleRelease"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^3.0.4",
