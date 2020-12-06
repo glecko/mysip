@@ -6,6 +6,7 @@ import DeleteLastDrinkButton from '../delete-last-drink/delete-last-drink-button
 import styles from './interval-monitors-container.styles';
 import { IntervalModel } from '../../../actions/hooks/aggregation/model';
 import { DAILY_ALCOHOL_UNITS_THRESHOLD, WEEKLY_ALCOHOL_UNITS_THRESHOLD } from '../../data/constants';
+import BloodConcentrationMonitor from '../blood-concentration-monitor/blood-concentration-monitor.component';
 
 function getTodayInterval(): IntervalModel {
   const start = new Date();
@@ -37,7 +38,7 @@ const IntervalMonitorsContainer = () => {
       <View style={styles.leftContainer}>
         <DeleteLastDrinkButton />
         <View style={styles.bloodConcentrationContainer}>
-          <Text style={styles.bloodConcentrationText}>0.00%</Text>
+          <BloodConcentrationMonitor style={styles.bloodConcentrationText} />
           <Text style={styles.bloodConcentrationDescription}>Blood concentration</Text>
         </View>
       </View>

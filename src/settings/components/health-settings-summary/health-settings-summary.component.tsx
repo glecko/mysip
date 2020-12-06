@@ -2,31 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Surface } from 'react-native-paper';
-import { readHealthParameter } from '../../hooks/application';
-import {
-  DEFAULT_USER_GENDER,
-  DEFAULT_USER_WEIGHT,
-  GENDER_STORAGE_KEY,
-  UserGender,
-  WEIGHT_STORAGE_KEY
-} from '../../models/model';
+import { getUserGender, getUserWeight } from '../../hooks/application';
 import { displayUserGender } from '../../hooks/display';
 import styles from './health-settings-summary.styles';
 import HealthSettingsDialogComponent from '../health-settings-dialog/health-settings-dialog.component';
 
-async function readInitialParam(key: string, defaultValue: number, setValueFn: Function) {
-  const value = await readHealthParameter(key, defaultValue);
-  setValueFn(value.toString());
-}
-
 const HealthSettingsSummaryComponent = () => {
   const [weight, setWeight] = useState('');
-  const [gender, setGender] = useState(UserGender.MALE.toString());
+  const [gender, setGender] = useState('');
   const [dialogVisible, setDialogVisible] = useState(false);
 
-  const setStateFromStorage = () => {
-    readInitialParam(WEIGHT_STORAGE_KEY, DEFAULT_USER_WEIGHT, setWeight);
-    readInitialParam(GENDER_STORAGE_KEY, DEFAULT_USER_GENDER, setGender);
+  const setStateFromStorage = async () => {
+    setGender((await getUserGender()).toString());
+    setWeight((await getUserWeight()).toString());
   };
 
   useEffect(() => {

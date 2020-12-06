@@ -6,6 +6,12 @@ export function sameDay(dateA: Date, dateB: Date) {
   return dateA.getDate() === dateB.getDate() && dateA.getMonth() === dateB.getMonth() && dateA.getFullYear() === dateB.getFullYear();
 }
 
+export function getTimeDistance(dateA: Date, dateB: Date): moment.Duration {
+  const momentA = moment(dateA);
+  const momentB = moment(dateB);
+  return moment.duration(momentB.diff(momentA));
+}
+
 export function currentTimeInterval(unit: unitOfTime.StartOf): IntervalModel {
   return {
     start: moment().startOf(unit).toDate(),
