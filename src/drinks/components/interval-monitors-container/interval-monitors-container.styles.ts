@@ -30,18 +30,23 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
   },
   intervalDescriptionText: {
     fontSize: 18,
+    textAlign: 'center'
   },
   monitorText: {
-    fontSize: 50
+    fontSize: 50,
+    textAlign: 'center'
   },
   monitorSubheader: {
     fontSize: 12,
+    textAlign: 'center'
   },
   bloodConcentrationText: {
-    fontSize: 30
+    fontSize: 30,
+    textAlign: 'center'
   },
   bloodConcentrationDescription: {
-    fontSize: 12
+    fontSize: 12,
+    textAlign: 'center'
   },
 });
 
