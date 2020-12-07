@@ -23,31 +23,31 @@ export function getGenderConstant(gender: UserGender) {
   return gender === UserGender.MALE ? MALE_GENDER_CONSTANT : FEMALE_GENDER_CONSTANT;
 }
 
-export function getBloodAlcoholConcentration(action: ActionModel, weight: number, gender: UserGender) {
+export function getWidmarkFormulaConcentration(action: ActionModel, weight: number, gender: UserGender) {
   return (100 * getAlcoholGrams(action)) / (weight * 1000 * getGenderConstant(gender));
 }
 
-export function calculateBloodConcentrationDecay(initialConcentration: number, ellapsedHours: number) {
+export function calculateWidmarkFormulaDecay(initialConcentration: number, ellapsedHours: number) {
   return Math.max(initialConcentration - ellapsedHours * BODY_METABOLISATION_SPEED, 0);
 }
 
 export function getAccumulatedBloodConcentration(sortedActions: ActionModel[], date: Date, weight: number, gender: UserGender): number {
   const lastDrinkAccumulation = sortedActions.reduce((acc, action, index) => {
     const lastAction = sortedActions[index - 1];
-    if (!lastAction) return getBloodAlcoholConcentration(action, weight, gender);
+    if (!lastAction) return getWidmarkFormulaConcentration(action, weight, gender);
 
     // From the previous drink until now, subtract the alcohol metabolised by the body
     const hourDistance = getTimeDistance(lastAction.date, action.date).asHours();
-    const concentration = calculateBloodConcentrationDecay(acc, hourDistance);
+    const concentration = calculateWidmarkFormulaDecay(acc, hourDistance);
 
     // Add the current drink's concentration
-    return concentration + getBloodAlcoholConcentration(action, weight, gender);
+    return concentration + getWidmarkFormulaConcentration(action, weight, gender);
   }, 0);
 
   // The lastDrinkAccumulation now contains the acumulated blood concentration at the moment of the last drink
   // To get the actual concentration at the specified date, we need to subtract the metabolisation since that moment
   const timeSinceLastDrink = getTimeDistance(sortedActions[sortedActions.length - 1].date, date).asHours();
-  return calculateBloodConcentrationDecay(lastDrinkAccumulation, timeSinceLastDrink);
+  return calculateWidmarkFormulaDecay(lastDrinkAccumulation, timeSinceLastDrink);
 }
 
 export async function getCurrentBloodConcentration(actions: Results<ActionModel & Object>): Promise<number> {

@@ -19,18 +19,12 @@ const BloodConcentrationMonitor = (props: BloodConcentrationMonitorModel) => {
     const actions = getBloodActiveDrinks();
     getCurrentBloodConcentration(actions).then((result: number) => setConcentration(result));
     actions.addListener(updateConcentrationListener);
+    const interval = setInterval(updateConcentrationListener, 60 * 1000);
     return () => {
+      clearInterval(interval);
       actions.removeListener(updateConcentrationListener);
     };
   }, []);
-
-  /* Executed each render */
-  useEffect(() => {
-    const timer = setTimeout(updateConcentrationListener, 60 * 1000);
-    return () => {
-      clearTimeout(timer);
-    };
-  });
 
   const displayString = `${concentration.toFixed(3)}%`;
   return (

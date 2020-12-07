@@ -41,7 +41,7 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
     textAlign: 'center'
   },
   bloodConcentrationText: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: 'center'
   },
   bloodConcentrationDescription: {

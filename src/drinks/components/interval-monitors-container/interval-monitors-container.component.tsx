@@ -25,12 +25,12 @@ const IntervalMonitorsContainer = () => {
   const [lastWeekInterval, setLastWeekInterval] = useState(getLastWeekInterval());
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const interval = setInterval(() => {
       setTodayInterval(getTodayInterval());
       setLastWeekInterval(getLastWeekInterval());
-    }, 10000);
-    // Clear timeout if the component is unmounted
-    return () => clearTimeout(timer);
+    }, 60 * 1000);
+    // Clear timer if the component is unmounted
+    return () => clearInterval(interval);
   });
 
   return (
@@ -39,7 +39,7 @@ const IntervalMonitorsContainer = () => {
         <DeleteLastDrinkButton />
         <View style={styles.bloodConcentrationContainer}>
           <BloodConcentrationMonitor style={styles.bloodConcentrationText} />
-          <Text style={styles.bloodConcentrationDescription}>Blood concentration</Text>
+          <Text style={styles.bloodConcentrationDescription}>Blood content</Text>
         </View>
       </View>
       <View style={styles.centerContainer}>
