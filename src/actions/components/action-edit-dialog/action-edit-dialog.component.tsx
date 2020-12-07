@@ -12,7 +12,7 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
   const [amount, setAmount] = useState(props.action.amount.toFixed(2));
   const [subtype, setSubtype] = useState(props.action.subtype);
 
-  const isValidForm = subtype !== '' && parseFloat(amount) > 0;
+  const isValidForm = subtype !== '' && parseFloat(amount) > 0 && date <= new Date();
   const title = props.title ? props.title : `Edit ${props.action.type}`;
 
   const resetDialog = () => {

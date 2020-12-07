@@ -8,8 +8,8 @@ const ConfigurableTimelineChartStyles = StyleSheet.create({
     backgroundColor: 'lightgray',
     borderRadius: 15,
     padding: 3,
-    marginBottom: 16,
-    marginTop: 16
+    marginTop: 16,
+    marginBottom: 3,
   },
   container: {
     alignItems: 'center',
@@ -27,6 +27,16 @@ const ConfigurableTimelineChartStyles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 5,
     paddingBottom: 5,
+  },
+  titleContainer: {
+    width: '100%',
+    paddingLeft: 16,
+    marginBottom: 2,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: 'gray'
   }
 });
 

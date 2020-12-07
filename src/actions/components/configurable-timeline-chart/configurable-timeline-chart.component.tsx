@@ -26,10 +26,14 @@ const ConfigurableActionTimelineChart = (props: ConfigurableActionTimelineModel)
     </TouchableOpacity>
   ));
 
+  const intervalTitle = intervalOptionData.intervalTitleFn(interval);
   return (
     <View style={styles.container}>
       <View style={styles.buttonsContainer}>
         {buttons}
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{intervalTitle}</Text>
       </View>
       <ActionTimelineChart
         type={props.type}

@@ -12,10 +12,23 @@ export function getTimeDistance(dateA: Date, dateB: Date): moment.Duration {
   return moment.duration(momentB.diff(momentA));
 }
 
-export function currentTimeInterval(unit: unitOfTime.StartOf): IntervalModel {
+export function currentTimeInterval(unit: unitOfTime.DurationConstructor, unitOffset: number): IntervalModel {
+  const start = moment().add(unitOffset, unit).startOf(unit).toDate();
+  const end = moment().add(unitOffset, unit).endOf(unit).toDate();
+  return { start, end };
+}
+
+export function getMiddleDate(dateA: Date, dateB: Date) {
+  const time = (dateA.getTime() + dateB.getTime()) / 2;
+  return new Date(time);
+}
+
+export function getMonthWeeksInterval(monthsOffset: number): IntervalModel {
+  const start = moment().add(monthsOffset, 'month').startOf('month').startOf('week');
+  const end = moment().add(monthsOffset, 'month').endOf('month').endOf('week');
   return {
-    start: moment().startOf(unit).toDate(),
-    end: moment().endOf(unit).toDate(),
+    start: start.toDate(),
+    end: end.toDate(),
   };
 }
 

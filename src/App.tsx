@@ -15,11 +15,14 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import NavigationComponent from './views/navigation';
+import { setMomentLocale } from './shared/hooks/locale';
 
 FontAwesomeIcon.loadFont();
 IonIcon.loadFont();
 MaterialCommunityIcon.loadFont();
 MaterialIcon.loadFont();
+
+setMomentLocale();
 
 const App: () => React.ReactElement = () => (
   <PaperProvider>

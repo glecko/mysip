@@ -16,7 +16,7 @@ import { getAlcoholGrams } from './format';
 export function getBloodActiveDrinks(): Results<ActionModel & Object> {
   const activeDrinksStartDate = new Date();
   activeDrinksStartDate.setHours(activeDrinksStartDate.getHours() - MAX_ALCOHOL_ACTIVITY_HOURS);
-  return getActions(ALCOHOL_UNIT_ACTION_TYPE, undefined, { start: activeDrinksStartDate });
+  return getActions(ALCOHOL_UNIT_ACTION_TYPE, undefined, { start: activeDrinksStartDate, end: new Date() });
 }
 
 export function getGenderConstant(gender: UserGender) {

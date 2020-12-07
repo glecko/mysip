@@ -11,13 +11,13 @@ import BloodConcentrationMonitor from '../blood-concentration-monitor/blood-conc
 function getTodayInterval(): IntervalModel {
   const start = new Date();
   start.setHours(start.getHours() - 24);
-  return { start };
+  return { start, end: new Date() };
 }
 
 function getLastWeekInterval(): IntervalModel {
   const start = new Date();
   start.setDate(start.getDate() - 7);
-  return { start };
+  return { start, end: new Date() };
 }
 
 const IntervalMonitorsContainer = () => {
@@ -31,7 +31,7 @@ const IntervalMonitorsContainer = () => {
     }, 60 * 1000);
     // Clear timer if the component is unmounted
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <View style={styles.container}>
