@@ -5,20 +5,19 @@ import {
   TIMELINE_CHART_OPTIONS,
   TimelineOptionModel
 } from './configurable-timeline-chart.model';
-import ActionTimelineChart from '../timeline-chart/action-timeline-chart.component';
 import styles from './configurable-timeline-chart.styles';
+import SwipeableTimelineChart from '../swipeable-timeline-chart/swipeable-timeline-chart.component';
 
 const ConfigurableActionTimelineChart = (props: ConfigurableActionTimelineModel) => {
   const [intervalOptionData, setIntervalOptionData] = useState(TIMELINE_CHART_OPTIONS[1]);
-  const [interval, setCurrentInterval] = useState(intervalOptionData.intervalFn());
 
   const buttonPress = (option: TimelineOptionModel) => {
-    setCurrentInterval(option.intervalFn());
     setIntervalOptionData(option);
   };
 
-  const buttons = TIMELINE_CHART_OPTIONS.map((option) => (
+  const buttons = TIMELINE_CHART_OPTIONS.map((option, index) => (
     <TouchableOpacity
+      key={index.toString()}
       style={option.name === intervalOptionData.name ? styles.activeButton : styles.button}
       onPress={() => buttonPress(option)}
     >
@@ -26,22 +25,15 @@ const ConfigurableActionTimelineChart = (props: ConfigurableActionTimelineModel)
     </TouchableOpacity>
   ));
 
-  const intervalTitle = intervalOptionData.intervalTitleFn(interval);
   return (
     <View style={styles.container}>
       <View style={styles.buttonsContainer}>
         {buttons}
       </View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{intervalTitle}</Text>
-      </View>
-      <ActionTimelineChart
+      <SwipeableTimelineChart
         type={props.type}
+        intervalOptionData={intervalOptionData}
         chartConfig={props.chartConfig}
-        formatIntervalFn={intervalOptionData.formatIntervalFn}
-        unitOfTime={intervalOptionData.unitOfTime}
-        interval={interval}
-        chartBarWidth={intervalOptionData.chartBarWidth}
       />
     </View>
   );

@@ -12,7 +12,7 @@ import buttonStyles from '../predefined-drink-button/predefined-drink-button.sty
 
 const DrinkButtonsContainer = () => {
   const buttons = PREDEFINED_DRINKS.map((drink) => (
-    <PredefinedDrinkButton {...drink} />
+    <PredefinedDrinkButton key={drink.name} {...drink} />
   ));
   const customActionButtonStyle: ViewStyle = { ...buttonStyles.button, backgroundColor: CUSTOM_DRINKS_BUTTON_PROPERTIES.buttonColor };
   return (

@@ -4,7 +4,7 @@ import { Dimensions, View } from 'react-native';
 import { ChartConfig, ChartData } from 'react-native-chart-kit/dist/HelperTypes';
 import { Results } from 'realm';
 import { aggregateActions } from '../../hooks/aggregation/hooks';
-import { ActionTimelineChartModel } from './action-timeline-chart.model';
+import { ACTION_TIMELINE_CHART_HEIGHT, ActionTimelineChartModel } from './action-timeline-chart.model';
 import { getActions, listenToActionCollection } from '../../hooks/application';
 import { IntervalModel } from '../../hooks/aggregation/model';
 import { getFirstAction, getLastAction } from '../../hooks/sorting';
@@ -43,7 +43,7 @@ const ActionTimelineChart = (props: ActionTimelineChartModel) => {
         data={data}
         chartConfig={chartConfig}
         width={Dimensions.get('window').width}
-        height={220}
+        height={ACTION_TIMELINE_CHART_HEIGHT}
         fromZero
         style={styles.chart}
         yAxisLabel=""

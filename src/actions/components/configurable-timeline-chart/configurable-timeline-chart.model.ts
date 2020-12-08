@@ -12,7 +12,7 @@ export interface ConfigurableActionTimelineModel {
 export interface TimelineOptionModel {
   name: string;
   formatIntervalFn: (aggregation: IntervalModel) => string;
-  intervalFn: Function;
+  intervalFn: (offset: number) => IntervalModel | undefined;
   intervalTitleFn: (aggregation: IntervalModel) => string;
   unitOfTime: unitOfTime.Base;
   chartBarWidth: number;
@@ -22,15 +22,15 @@ export const TIMELINE_CHART_OPTIONS: TimelineOptionModel[] = [
   {
     name: 'W',
     formatIntervalFn: (interval) => moment(interval.start).format('ddd'),
-    intervalFn: () => currentTimeInterval('week', 0),
-    intervalTitleFn: (interval) => `${moment(interval.start).format('D MMM')} - ${moment(interval.end).format('D MMM')}`,
+    intervalFn: (offset: number) => currentTimeInterval('week', offset),
+    intervalTitleFn: (interval) => `${moment(interval.start).format('D MMM YY')} - ${moment(interval.end).format('D MMM YY')}`,
     unitOfTime: 'days',
     chartBarWidth: 0.75,
   },
   {
     name: 'M',
     formatIntervalFn: (interval) => `${moment(interval.start).format('D')} - ${moment(interval.end).format('D')}`,
-    intervalFn: () => getMonthWeeksInterval(0),
+    intervalFn: (offset: number) => getMonthWeeksInterval(offset),
     intervalTitleFn: (interval) => {
       const middleDate = getMiddleDate(interval.start as Date, interval.end as Date);
       return `${moment(middleDate).format('MMMM YYYY')}`;
@@ -41,7 +41,7 @@ export const TIMELINE_CHART_OPTIONS: TimelineOptionModel[] = [
   {
     name: 'Y',
     formatIntervalFn: (interval) => moment(interval.start).format('MMM'),
-    intervalFn: () => currentTimeInterval('year', 0),
+    intervalFn: (offset: number) => currentTimeInterval('year', offset),
     intervalTitleFn: (interval) => `${moment(interval.start).format('YYYY')}`,
     unitOfTime: 'month',
     chartBarWidth: 0.4,
@@ -49,8 +49,8 @@ export const TIMELINE_CHART_OPTIONS: TimelineOptionModel[] = [
   {
     name: 'A',
     formatIntervalFn: (interval) => moment(interval.start).format('MMM YY'),
-    intervalTitleFn: () => '',
-    intervalFn: () => {},
+    intervalTitleFn: () => 'All time',
+    intervalFn: () => undefined,
     unitOfTime: 'month',
     chartBarWidth: 0.5,
   },
