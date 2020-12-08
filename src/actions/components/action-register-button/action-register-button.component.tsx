@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { FullActionRegisterButtonModel } from './action-register-button.model';
+import { ActionRegisterButtonModel } from './action-register-button.model';
 import ImageButton from '../../../shared/components/image-button/image-button.component';
 import { ActionRegisterButtonStyles, ActionRegisterImageButtonStyles } from './action-register-button.styles';
 import { createEmptyAction } from '../../hooks/application';
 
-const ActionRegisterButton = (props: FullActionRegisterButtonModel) => {
+const ActionRegisterButton = (props: ActionRegisterButtonModel) => {
   const typeText = `${props.type}${props.amount === 1 ? '' : 's'}`;
   const mainText = props.text ? props.text : `Add ${props.subtype} (${props.amount} ${typeText})`;
 

@@ -9,14 +9,14 @@ import DatetimePickerComponent from '../../../shared/components/datetime-picker/
 const ActionEditDialog = (props: ActionEditDialogModel) => {
   const [date, setDate] = useState(props.action.date);
   const [note, setNote] = useState(props.action.note ? props.action.note : '');
-  const [amount, setAmount] = useState(props.action.amount.toFixed(2));
+  const [amount, setAmount] = useState(props.action.amount.toFixed(1));
   const [subtype, setSubtype] = useState(props.action.subtype);
 
   const isValidForm = subtype !== '' && parseFloat(amount) > 0 && date <= new Date();
   const title = props.title ? props.title : `Edit ${props.action.type}`;
 
   const resetDialog = () => {
-    setAmount(props.action.amount.toFixed(2));
+    setAmount(props.action.amount.toFixed(1));
     setSubtype(props.action.subtype);
     setNote(props.action.note ? props.action.note : '');
     setDate(props.action.date);
@@ -52,20 +52,20 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
           />
           <TextInput
             mode="outlined"
-            placeholder="Subtype"
+            placeholder={props.subtypePlaceholder ? props.subtypePlaceholder : 'Subtype'}
             value={subtype}
             onChangeText={(text) => setSubtype(text)}
           />
           <TextInput
             mode="outlined"
-            placeholder="Amount"
+            placeholder={props.amountPlaceholder ? props.amountPlaceholder : 'Amount'}
             keyboardType="numeric"
             onChangeText={(text) => setAmount(text)}
             value={amount.toString()}
           />
           <TextInput
             mode="outlined"
-            placeholder="Note"
+            placeholder={props.notePlaceholder ? props.notePlaceholder : 'Note'}
             value={note}
             onChangeText={(text) => setNote(text)}
           />

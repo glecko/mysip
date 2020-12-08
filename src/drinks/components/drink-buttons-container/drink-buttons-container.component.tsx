@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ViewStyle } from 'react-native';
 import PredefinedDrinkButton from '../predefined-drink-button/predefined-drink-button.component';
 import {
-  CUSTOM_DRINKS_BUTTON_PROPERTIES,
+  CUSTOM_DRINKS_BUTTON_PROPERTIES, DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER, DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER,
   PREDEFINED_DRINKS
 } from '../../data/predefined-drinks';
 import styles from './drink-buttons-container.styles';
@@ -22,7 +22,12 @@ const DrinkButtonsContainer = () => {
         type={ALCOHOL_UNIT_ACTION_TYPE}
         image={CUSTOM_DRINKS_BUTTON_PROPERTIES.image}
         text={CUSTOM_DRINKS_BUTTON_PROPERTIES.text}
+        dialogTitle={CUSTOM_DRINKS_BUTTON_PROPERTIES.dialogTitle}
         style={customActionButtonStyle}
+        dialogOptions={{
+          amountPlaceholder: DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER,
+          subtypePlaceholder: DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER
+        }}
       />
     </View>
   );

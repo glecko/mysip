@@ -12,12 +12,19 @@ const ActionListView = (props: ActionListViewModel) => {
 
   useEffect(() => listenToActionCollection(setActionsData, props.name, props.maxEntries), [props.name]);
 
+  const renderItem = (action: ListRenderItemInfo<ActionModel>) => (
+    <ActionListItem
+      action={action.item}
+      dialog={props.dialog}
+    />
+  );
+
   return (
     <SafeAreaView>
       <FlatList
         data={actionsData}
         keyExtractor={(action: ActionModel) => action.id}
-        renderItem={(action: ListRenderItemInfo<ActionModel>) => <ActionListItem action={action.item} />}
+        renderItem={renderItem}
       />
     </SafeAreaView>
   );

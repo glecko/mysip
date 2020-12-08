@@ -4,8 +4,12 @@ import { AlcoholicDrinkModel } from '../models/model';
 export const CUSTOM_DRINKS_BUTTON_PROPERTIES = {
   image: require('@images/drink-icons/random-drinks.png'),
   buttonColor: '#cceeff',
-  text: 'Add custom drink'
+  text: 'Another drink type',
+  dialogTitle: 'Add custom drink type'
 };
+
+export const DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER = 'Drink name';
+export const DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER = 'Amount (in alcohol units)';
 
 export const PREDEFINED_DRINKS: AlcoholicDrinkModel[] = [
   {

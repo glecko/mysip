@@ -34,6 +34,9 @@ const ActionListItem = (props: ActionListItemModel) => {
           onDialogConfirm={onEditDialogClose}
           onDismiss={onEditDialogClose}
           title="Edit drink entry"
+          subtypePlaceholder={props.dialog?.subtypePlaceholder}
+          amountPlaceholder={props.dialog?.amountPlaceholder}
+          notePlaceholder={props.dialog?.notePlaceholder}
         />
       </View>,
       <AlertConfirmButton
