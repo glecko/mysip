@@ -10,7 +10,7 @@ import {
 import { getTimeDistance } from '../../shared/utils/date';
 import { ActionModel } from '../../actions/models/models';
 import { UserGender } from '../../settings/models/model';
-import { getUserGender, getUserWeight } from '../../settings/hooks/application';
+import { getUserGender, getUserWeight } from '../../settings/hooks/health-settings/application';
 import { getAlcoholGrams } from './format';
 
 export function getBloodActiveDrinks(): Results<ActionModel & Object> {

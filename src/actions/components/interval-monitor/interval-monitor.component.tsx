@@ -3,7 +3,6 @@ import { Text } from 'react-native';
 import { IntervalMonitorModel } from './interval-monitor.model';
 import { getActions, listenToActionCollection } from '../../hooks/application';
 
-
 const IntervalMonitor = (props: IntervalMonitorModel) => {
   const [actions, setActions] = useState(getActions(props.type, undefined, props.interval));
 

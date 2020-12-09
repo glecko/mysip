@@ -5,7 +5,7 @@ import {
   GENDER_STORAGE_KEY,
   UserGender,
   WEIGHT_STORAGE_KEY
-} from '../models/model';
+} from '../../models/model';
 
 export async function saveHealthParameter(key: string, value: number): Promise<void> {
   return AsyncStorage.setItem(key, value.toString());

@@ -5,7 +5,7 @@ import {
 } from 'react-native-paper';
 import { GENDER_STORAGE_KEY, UserGender, WEIGHT_STORAGE_KEY } from '../../models/model';
 import { HealthSettingsDialogModel } from './health-settings-dialog.model';
-import { saveHealthParameter } from '../../hooks/application';
+import { saveHealthParameter } from '../../hooks/health-settings/application';
 import styles from './health-settings-dialog.styles';
 
 const HealthSettingsDialogComponent = (props: HealthSettingsDialogModel) => {

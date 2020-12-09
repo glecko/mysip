@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ViewStyle } from 'react-native';
 import PredefinedDrinkButton from '../predefined-drink-button/predefined-drink-button.component';
 import {
-  CUSTOM_DRINKS_BUTTON_PROPERTIES, DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER, DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER,
-  PREDEFINED_DRINKS
-} from '../../data/predefined-drinks';
+  CUSTOM_DRINKS_BUTTON_PROPERTIES, DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER, DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER
+} from '../../data/strings';
 import styles from './drink-buttons-container.styles';
 import CustomActionButton from '../../../actions/components/action-register-button/custom-action/custom-action-button.component';
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
 import buttonStyles from '../predefined-drink-button/predefined-drink-button.styles';
+import {
+  getAlcoholicDrinks,
+  listenToAlcoholicDrinksCollection, sortAlcoholicDrinks
+} from '../../../settings/hooks/alcoholic-drinks/application';
 
 const DrinkButtonsContainer = () => {
-  const buttons = PREDEFINED_DRINKS.map((drink) => (
-    <PredefinedDrinkButton key={drink.name} {...drink} />
+  const [drinks, setDrinks] = useState(getAlcoholicDrinks());
+
+  useEffect(() => listenToAlcoholicDrinksCollection(setDrinks), []);
+
+  const sortedButtons = sortAlcoholicDrinks(drinks);
+  const buttons = sortedButtons.map((drink) => (
+    <PredefinedDrinkButton
+      key={drink.name}
+      id={drink.id}
+      name={drink.name}
+      volume={drink.volume}
+      content={drink.content}
+      buttonColor={drink.buttonColor}
+      sortingIndex={drink.sortingIndex}
+      imageName={drink.imageName}
+    />
   ));
   const customActionButtonStyle: ViewStyle = { ...buttonStyles.button, backgroundColor: CUSTOM_DRINKS_BUTTON_PROPERTIES.buttonColor };
   return (

@@ -7,7 +7,7 @@ import {
 import ActionListView from '../actions/components/action-list-view/action-list-view.component';
 import ConfigurableActionTimelineChart from '../actions/components/configurable-timeline-chart/configurable-timeline-chart.component';
 import { ALCOHOL_UNIT_ACTION_TYPE } from '../drinks/models/model';
-import { DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER, DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER } from '../drinks/data/predefined-drinks';
+import { DRINK_EDIT_DIALOG_AMOUNT_PLACEHOLDER, DRINK_EDIT_DIALOG_SUBTYPE_PLACEHOLDER } from '../drinks/data/strings';
 
 const styles = StyleSheet.create({
   scrollView: {},

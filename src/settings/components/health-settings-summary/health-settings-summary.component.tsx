@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Surface } from 'react-native-paper';
-import { getUserGender, getUserWeight } from '../../hooks/application';
-import { displayUserGender } from '../../hooks/display';
+import { getUserGender, getUserWeight } from '../../hooks/health-settings/application';
+import { displayUserGender } from '../../hooks/health-settings/display';
 import styles from './health-settings-summary.styles';
 import HealthSettingsDialogComponent from '../health-settings-dialog/health-settings-dialog.component';
 
