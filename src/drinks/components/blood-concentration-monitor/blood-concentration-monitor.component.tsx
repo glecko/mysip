@@ -26,7 +26,7 @@ const BloodConcentrationMonitor = (props: BloodConcentrationMonitorModel) => {
     };
   }, []);
 
-  const displayString = `${concentration.toFixed(3)}%`;
+  const displayString = `${concentration.toFixed(2)} g/l`;
   return (
     <Text style={props.style}>{displayString}</Text>
   );

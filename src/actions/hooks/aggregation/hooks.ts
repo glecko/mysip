@@ -26,7 +26,9 @@ export function aggregateActions(
 ): ActionsAgregatedByTimeUnitModel[] {
   const sortedActions = sortActionsByDate(actions);
   const fullInterval = { ...interval };
-  if (!fullInterval.start) fullInterval.start = new Date(sortedActions[0].date);
-  if (!fullInterval.end) fullInterval.end = new Date(sortedActions[sortedActions.length - 1].date);
+  if (sortedActions.length > 0) {
+    if (!fullInterval.start) fullInterval.start = new Date(sortedActions[0].date);
+    if (!fullInterval.end) fullInterval.end = new Date(sortedActions[sortedActions.length - 1].date);
+  }
   return aggregatedActionsInInterval(sortedActions, interval, unit, formatIntervalFn);
 }

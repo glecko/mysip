@@ -13,6 +13,9 @@ import { UserGender } from '../../settings/models/model';
 import { getUserGender, getUserWeight } from '../../settings/hooks/health-settings/application';
 import { getAlcoholGrams } from './format';
 
+/*
+  Returns a collection of drinks (actions) that are recent enough as to possibly still be active in the user's blood.
+*/
 export function getBloodActiveDrinks(): Results<ActionModel & Object> {
   const activeDrinksStartDate = new Date();
   activeDrinksStartDate.setHours(activeDrinksStartDate.getHours() - MAX_ALCOHOL_ACTIVITY_HOURS);
@@ -23,11 +26,19 @@ export function getGenderConstant(gender: UserGender) {
   return gender === UserGender.MALE ? MALE_GENDER_CONSTANT : FEMALE_GENDER_CONSTANT;
 }
 
-export function getWidmarkFormulaConcentration(action: ActionModel, weight: number, gender: UserGender) {
-  return (100 * getAlcoholGrams(action)) / (weight * 1000 * getGenderConstant(gender));
+/*
+  Returns the blood concentration a certain alcoholic drink (action) adds
+  to the blood of an individual of a given weight and gender. (in grams / liter)
+*/
+export function getWidmarkFormulaConcentration(action: ActionModel, weight: number, gender: UserGender): number {
+  return (getAlcoholGrams(action)) / (weight * getGenderConstant(gender));
 }
 
-export function calculateWidmarkFormulaDecay(initialConcentration: number, ellapsedHours: number) {
+/*
+  Given a starting alcohol blood concentration (in grams / liter), this function returns the
+  remaining blood concentration after a certain amount of hours.
+*/
+export function calculateWidmarkFormulaDecay(initialConcentration: number, ellapsedHours: number): number {
   return Math.max(initialConcentration - ellapsedHours * BODY_METABOLISATION_SPEED, 0);
 }
 
@@ -50,7 +61,9 @@ export function getAccumulatedBloodConcentration(sortedActions: ActionModel[], d
   return calculateWidmarkFormulaDecay(lastDrinkAccumulation, timeSinceLastDrink);
 }
 
+/* Returns the alcohol blood concentration of the user at a given time, in grams per liter */
 export async function getCurrentBloodConcentration(actions: Results<ActionModel & Object>): Promise<number> {
+  if (actions.length === 0) return 0;
   const weight = await getUserWeight();
   const gender = await getUserGender();
   const sortedActions = sortActionsByDate(actions);
