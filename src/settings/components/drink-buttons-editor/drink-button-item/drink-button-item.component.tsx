@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, Image } from 'react-native';
 // @ts-ignore
 import Swipeable from 'react-native-swipeable-row';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styles from './action-list-item.styles';
-import { ActionListItemModel } from './action-list-item.model';
+import styles from './drink-button-item.styles';
+import { DrinkButtonItemModel } from './drink-button-item.model';
 import AlertConfirmButton from '../../../../shared/components/alert-confirm-button/alert-confirm-button.component';
-import ActionEditDialog from '../../action-edit-dialog/action-edit-dialog.component';
-import { displayAction } from '../../../hooks/display';
-import { ActionStub } from '../../../models/models';
-import { deleteAction } from '../../../hooks/application';
+import { deleteAlcoholicDrink } from '../../../../drinks/hooks/application';
+import { getDrinkDescription } from '../../../../drinks/hooks/display';
+import { getDrinkImage } from '../../../../shared/hooks/images';
+import DrinkButtonDialog from '../drink-button-dialog/drink-button-dialog.component';
 
-const ActionListItem = (props: ActionListItemModel) => {
+const DrinkButtonItem = (props: DrinkButtonItemModel) => {
   const [editDialogVisible, setEditDialogVisible] = useState(false);
   const onEditDialogClose = () => setEditDialogVisible(false);
 
-  const deleteCurrentAction = () => deleteAction(props.action);
-  const alertText = `Are you sure you want to delete this action? (${displayAction(props.action, true)})`;
+  const deleteCurrentDrink = () => deleteAlcoholicDrink(props.drink);
+  const alertText = `Are you sure you want to delete this button? (${getDrinkDescription(props.drink)})`;
 
   const actionRightButtons = () => {
     const renderButtonContentFn = () => (
@@ -31,7 +31,7 @@ const ActionListItem = (props: ActionListItemModel) => {
         </TouchableHighlight>
       </View>,
       <AlertConfirmButton
-        onConfirm={deleteCurrentAction}
+        onConfirm={deleteCurrentDrink}
         alertText={alertText}
         alertTitle="Delete action?"
         renderContentFn={renderButtonContentFn}
@@ -39,24 +39,23 @@ const ActionListItem = (props: ActionListItemModel) => {
     ];
   };
 
-  const text = displayAction(props.action, true);
+  const text = getDrinkDescription(props.drink);
   return (
     <Swipeable rightButtons={actionRightButtons()}>
       <View style={styles.swipeRowFront}>
-        <Text>{text}</Text>
+        <View style={styles.description}>
+          <Image style={styles.image} source={getDrinkImage(props.drink.imageName)} />
+          <Text>{text}</Text>
+        </View>
       </View>
-      <ActionEditDialog
-        action={props.action as ActionStub}
-        visible={editDialogVisible}
+      <DrinkButtonDialog
+        drink={props.drink}
         onDialogConfirm={onEditDialogClose}
         onDismiss={onEditDialogClose}
-        title="Edit drink entry"
-        subtypePlaceholder={props.dialog?.subtypePlaceholder}
-        amountPlaceholder={props.dialog?.amountPlaceholder}
-        notePlaceholder={props.dialog?.notePlaceholder}
+        visible={editDialogVisible}
       />
     </Swipeable>
   );
 };
 
-export default ActionListItem;
+export default DrinkButtonItem;

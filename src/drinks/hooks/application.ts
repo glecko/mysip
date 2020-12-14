@@ -1,7 +1,7 @@
 import { Results } from 'realm';
-import { AlcoholicDrinkModel } from '../../models/model';
-import { RealmService } from '../../../shared/storage/realm';
-import { AlcoholicDrinkSchema } from '../../models/schema';
+import { AlcoholicDrinkModel } from '../../settings/models/model';
+import { RealmService } from '../../shared/storage/realm';
+import { AlcoholicDrinkSchema } from '../../settings/models/schema';
 
 export function sortAlcoholicDrinks(drinks: Results<AlcoholicDrinkModel>) {
   return drinks.filter(() => true).sort((drinkA, drinkB) => drinkA.sortingIndex - drinkB.sortingIndex);
@@ -13,10 +13,15 @@ export function getAlcoholicDrinks(): Results<AlcoholicDrinkModel> {
   );
 }
 
+export function deleteAlcoholicDrink(drink: AlcoholicDrinkModel) {
+  RealmService.deleteObjectById(AlcoholicDrinkSchema.name, drink.id);
+}
+
 export function listenToAlcoholicDrinksCollection(setDrinks: Function) {
   const updateDrinksListener = () => {
     const drinks = getAlcoholicDrinks();
-    setDrinks(drinks);
+    const sortedDrinks = sortAlcoholicDrinks(drinks);
+    setDrinks(sortedDrinks);
   };
 
   const drinksCollection = getAlcoholicDrinks();

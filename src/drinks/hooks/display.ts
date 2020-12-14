@@ -2,7 +2,7 @@ import { capitalize, displayPercentage } from '../../shared/utils/string';
 import { AlcoholicDrinkModel } from '../../settings/models/model';
 
 export function getDrinkDisplayVolume(drink: AlcoholicDrinkModel) {
-  return `${drink.volume} ml`;
+  return `${drink.volume.toFixed(0)} ml`;
 }
 
 export function getDrinkDisplayContent(drink: AlcoholicDrinkModel) {

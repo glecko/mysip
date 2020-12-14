@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import IntervalMonitor from '../../../actions/components/interval-monitor/interval-monitor.component';
-import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
+import { ALCOHOL_UNIT_ACTION_TYPE, INTERVAL_MONITORS_REFRESH_RATE } from '../../models/model';
 import DeleteLastDrinkButton from '../delete-last-drink/delete-last-drink-button.component';
 import styles from './interval-monitors-container.styles';
 import { IntervalModel } from '../../../actions/hooks/aggregation/model';
 import { DAILY_ALCOHOL_UNITS_THRESHOLD, WEEKLY_ALCOHOL_UNITS_THRESHOLD } from '../../data/constants';
 import BloodConcentrationMonitor from '../blood-concentration-monitor/blood-concentration-monitor.component';
 
+function getIntervalUntilPresent(start: Date): IntervalModel {
+  const end = new Date();
+  // We need to add the interval refresh rate to avoid missing new actions added until the interval refreshes
+  end.setSeconds(end.getSeconds() + INTERVAL_MONITORS_REFRESH_RATE);
+  return { start, end };
+}
+
 function getTodayInterval(): IntervalModel {
   const start = new Date();
   start.setHours(start.getHours() - 24);
-  return { start, end: new Date() };
+  return getIntervalUntilPresent(start);
 }
 
 function getLastWeekInterval(): IntervalModel {
   const start = new Date();
   start.setDate(start.getDate() - 7);
-  return { start, end: new Date() };
+  return getIntervalUntilPresent(start);
 }
 
 const IntervalMonitorsContainer = () => {
@@ -28,7 +35,7 @@ const IntervalMonitorsContainer = () => {
     const interval = setInterval(() => {
       setTodayInterval(getTodayInterval());
       setLastWeekInterval(getLastWeekInterval());
-    }, 60 * 1000);
+    }, INTERVAL_MONITORS_REFRESH_RATE * 1000);
     // Clear timer if the component is unmounted
     return () => clearInterval(interval);
   }, []);

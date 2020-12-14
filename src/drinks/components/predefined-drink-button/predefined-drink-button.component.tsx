@@ -9,7 +9,7 @@ import {
 import buttonStyles from './predefined-drink-button.styles';
 import { getAlcoholUnitsForDrink } from '../../hooks/format';
 import { AlcoholicDrinkModel } from '../../../settings/models/model';
-import { getDrinkImage } from '../../../settings/hooks/alcoholic-drinks/images';
+import { getDrinkImage } from '../../../shared/hooks/images';
 
 const PredefinedDrinkButton = (props: AlcoholicDrinkModel) => {
   const amount = getAlcoholUnitsForDrink(props);

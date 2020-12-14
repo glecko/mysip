@@ -10,16 +10,15 @@ import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
 import buttonStyles from '../predefined-drink-button/predefined-drink-button.styles';
 import {
   getAlcoholicDrinks,
-  listenToAlcoholicDrinksCollection, sortAlcoholicDrinks
-} from '../../../settings/hooks/alcoholic-drinks/application';
+  listenToAlcoholicDrinksCollection
+} from '../../hooks/application';
 
 const DrinkButtonsContainer = () => {
   const [drinks, setDrinks] = useState(getAlcoholicDrinks());
 
   useEffect(() => listenToAlcoholicDrinksCollection(setDrinks), []);
 
-  const sortedButtons = sortAlcoholicDrinks(drinks);
-  const buttons = sortedButtons.map((drink) => (
+  const buttons = drinks.map((drink) => (
     <PredefinedDrinkButton
       key={drink.name}
       id={drink.id}

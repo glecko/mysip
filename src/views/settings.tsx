@@ -2,8 +2,9 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Text
+  Text, ScrollView
 } from 'react-native';
+import DrinkButtonsEditorComponent from 'settings/components/drink-buttons-editor/drink-buttons-editor.component';
 import HealthSettingsSummaryComponent
   from '../settings/components/health-settings-summary/health-settings-summary.component';
 
@@ -20,8 +21,11 @@ const styles = StyleSheet.create({
 
 const SettingsView = () => (
   <View style={styles.container}>
-    <Text style={styles.header}>Settings</Text>
-    <HealthSettingsSummaryComponent />
+    <ScrollView>
+      <Text style={styles.header}>Settings</Text>
+      <HealthSettingsSummaryComponent />
+      <DrinkButtonsEditorComponent />
+    </ScrollView>
   </View>
 );
 
