@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import {
   Button, Dialog, Portal, RadioButton, TextInput
 } from 'react-native-paper';
-import { GENDER_STORAGE_KEY, UserGender, WEIGHT_STORAGE_KEY } from '../../models/model';
+import { GENDER_STORAGE_KEY, UserGender, WEIGHT_STORAGE_KEY } from '../../../drinks/models/model';
 import { HealthSettingsDialogModel } from './health-settings-dialog.model';
 import { saveHealthParameter } from '../../hooks/health-settings/application';
 import styles from './health-settings-dialog.styles';

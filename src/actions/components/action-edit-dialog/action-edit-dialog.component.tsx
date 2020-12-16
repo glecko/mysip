@@ -5,6 +5,7 @@ import {
 import { ActionEditDialogModel } from './action-edit-dialog.model';
 import { upsertAction } from '../../hooks/application';
 import DatetimePickerComponent from '../../../shared/components/datetime-picker/datetime-picker.component';
+import styles from './action-edit-dialog.styles';
 
 const ActionEditDialog = (props: ActionEditDialogModel) => {
   const [date, setDate] = useState(props.action.date);
@@ -52,22 +53,28 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
           />
           <TextInput
             mode="outlined"
+            label={props.subtypePlaceholder ? props.subtypePlaceholder : 'Subtype'}
             placeholder={props.subtypePlaceholder ? props.subtypePlaceholder : 'Subtype'}
             value={subtype}
             onChangeText={(text) => setSubtype(text)}
+            style={styles.textInput}
           />
           <TextInput
             mode="outlined"
+            label={props.amountPlaceholder ? props.amountPlaceholder : 'Amount'}
             placeholder={props.amountPlaceholder ? props.amountPlaceholder : 'Amount'}
             keyboardType="numeric"
             onChangeText={(text) => setAmount(text)}
-            value={amount.toString()}
+            value={amount}
+            style={styles.textInput}
           />
           <TextInput
             mode="outlined"
+            label={props.notePlaceholder ? props.notePlaceholder : 'Note'}
             placeholder={props.notePlaceholder ? props.notePlaceholder : 'Note'}
             value={note}
             onChangeText={(text) => setNote(text)}
+            style={styles.textInput}
           />
         </Dialog.Content>
         <Dialog.Actions>

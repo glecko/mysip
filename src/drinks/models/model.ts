@@ -1,4 +1,22 @@
-export const ALCOHOL_UNIT_ACTION_TYPE = 'alcohol unit';
+import { ColorValue } from 'react-native';
+import { RealmEntry } from '../../shared/storage/models';
 
-// How often interval monitors update their intervals (in seconds)
-export const INTERVAL_MONITORS_REFRESH_RATE = 60;
+export const WEIGHT_STORAGE_KEY = 'weight';
+export const GENDER_STORAGE_KEY = 'gender';
+
+export enum UserGender {
+  MALE,
+  FEMALE
+}
+
+export const DEFAULT_USER_WEIGHT = 80;
+export const DEFAULT_USER_GENDER = UserGender.MALE;
+
+export interface AlcoholicDrinkModel extends RealmEntry {
+  name: string;
+  volume: number;
+  content: number;
+  imageName: string;
+  buttonColor: ColorValue;
+  sortingIndex: number;
+}

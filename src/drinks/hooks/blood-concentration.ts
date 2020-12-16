@@ -1,6 +1,6 @@
 import { Object, Results } from 'realm';
 import { getActions } from '../../actions/hooks/application';
-import { ALCOHOL_UNIT_ACTION_TYPE } from '../models/model';
+import { ALCOHOL_UNIT_ACTION_TYPE } from '../models/constants';
 import { sortActionsByDate } from '../../actions/hooks/sorting';
 import {
   BODY_METABOLISATION_SPEED,
@@ -9,9 +9,10 @@ import {
 } from '../data/blood-concentration';
 import { getTimeDistance } from '../../shared/utils/date';
 import { ActionModel } from '../../actions/models/models';
-import { UserGender } from '../../settings/models/model';
+import { UserGender } from '../models/model';
 import { getUserGender, getUserWeight } from '../../settings/hooks/health-settings/application';
 import { getAlcoholGrams } from './format';
+import { getIntervalUntilPresent } from '../components/interval-monitors-container/interval-monitors-container.component';
 
 /*
   Returns a collection of drinks (actions) that are recent enough as to possibly still be active in the user's blood.
@@ -19,7 +20,8 @@ import { getAlcoholGrams } from './format';
 export function getBloodActiveDrinks(): Results<ActionModel & Object> {
   const activeDrinksStartDate = new Date();
   activeDrinksStartDate.setHours(activeDrinksStartDate.getHours() - MAX_ALCOHOL_ACTIVITY_HOURS);
-  return getActions(ALCOHOL_UNIT_ACTION_TYPE, undefined, { start: activeDrinksStartDate, end: new Date() });
+  const interval = getIntervalUntilPresent(activeDrinksStartDate);
+  return getActions(ALCOHOL_UNIT_ACTION_TYPE, undefined, interval);
 }
 
 export function getGenderConstant(gender: UserGender) {

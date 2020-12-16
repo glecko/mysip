@@ -1,7 +1,7 @@
-import { AlcoholicDrinkModel } from '../../../models/model';
+import { AlcoholicDrinkModel } from '../../../../drinks/models/model';
 
 export interface DrinkButtonDialogModel {
-  drink?: AlcoholicDrinkModel;
+  drink: AlcoholicDrinkModel;
   visible: boolean;
   onDismiss: Function;
   onDialogConfirm: Function;

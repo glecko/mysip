@@ -4,14 +4,24 @@ import {
   FlatList, ListRenderItemInfo, Text, View
 } from 'react-native';
 import styles from './drink-buttons-editor.styles';
-import { getAlcoholicDrinks, listenToAlcoholicDrinksCollection } from '../../../drinks/hooks/application';
-import { AlcoholicDrinkModel } from '../../models/model';
+import {
+  createEmptyAlcoholicDrink,
+  getAlcoholicDrinks,
+  listenToAlcoholicDrinksCollection
+} from '../../../drinks/hooks/application';
+import { AlcoholicDrinkModel } from '../../../drinks/models/model';
 import DrinkButtonItem from './drink-button-item/drink-button-item.component';
 import DrinkButtonDialog from './drink-button-dialog/drink-button-dialog.component';
 
 const DrinkButtonsEditorComponent = () => {
+  const [newDrink, setNewDrink] = useState(createEmptyAlcoholicDrink());
   const [drinks, setDrinks] = useState(getAlcoholicDrinks());
   const [editDialogVisible, setEditDialogVisible] = useState(false);
+
+  const onAddDrinkPress = () => {
+    setNewDrink(createEmptyAlcoholicDrink());
+    setEditDialogVisible(true);
+  };
 
   const onEditDialogClose = () => setEditDialogVisible(false);
 
@@ -34,9 +44,9 @@ const DrinkButtonsEditorComponent = () => {
         />
       </View>
       <View style={styles.addButtonContainer}>
-        <Button title="Add drink button" onPress={() => setEditDialogVisible(true)} />
+        <Button title="Add drink button" onPress={onAddDrinkPress} />
         <DrinkButtonDialog
-          drink={undefined}
+          drink={newDrink}
           onDialogConfirm={onEditDialogClose}
           onDismiss={onEditDialogClose}
           visible={editDialogVisible}

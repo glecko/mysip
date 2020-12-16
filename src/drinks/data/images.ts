@@ -1,7 +1,6 @@
 import { ImageSourcePropType } from 'react-native';
 
 /* eslint-disable global-require */
-export const DEFAULT_DRINK_IMAGE = require('@images/drink-icons/random-drinks.png');
 
 export const IMAGE_NAME_MAPPING: { [name: string]: ImageSourcePropType } = {
   'beer-glass': require('@images/drink-icons/beer-glass.png'),
@@ -13,5 +12,7 @@ export const IMAGE_NAME_MAPPING: { [name: string]: ImageSourcePropType } = {
   'long-drink': require('@images/drink-icons/long-drink.png'),
   'whisky-glass': require('@images/drink-icons/whisky-glass.png'),
   cocktail: require('@images/drink-icons/cocktail.png'),
+
+  default: require('@images/drink-icons/random-drinks.png'),
 };
 /* eslint-enable global-require */

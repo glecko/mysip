@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { FAB } from 'react-native-paper';
 import DeleteLastActionButton from '../../../actions/components/delete-last-action-button/delete-last-action-button.component';
-import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
+import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/constants';
 import styles from './delete-last-drink-button.styles';
 
 const DeleteLastDrinkButton = () => {

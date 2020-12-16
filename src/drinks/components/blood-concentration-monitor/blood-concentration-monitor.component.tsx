@@ -5,6 +5,7 @@ import {
   getBloodActiveDrinks,
   getCurrentBloodConcentration
 } from '../../hooks/blood-concentration';
+import { INTERVAL_MONITORS_REFRESH_RATE } from '../../models/constants';
 
 const BloodConcentrationMonitor = (props: BloodConcentrationMonitorModel) => {
   const [concentration, setConcentration] = useState(0);
@@ -19,7 +20,7 @@ const BloodConcentrationMonitor = (props: BloodConcentrationMonitorModel) => {
     const actions = getBloodActiveDrinks();
     getCurrentBloodConcentration(actions).then((result: number) => setConcentration(result));
     actions.addListener(updateConcentrationListener);
-    const interval = setInterval(updateConcentrationListener, 60 * 1000);
+    const interval = setInterval(updateConcentrationListener, INTERVAL_MONITORS_REFRESH_RATE);
     return () => {
       clearInterval(interval);
       actions.removeListener(updateConcentrationListener);

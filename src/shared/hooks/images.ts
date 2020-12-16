@@ -1,10 +1,10 @@
 import { ImageSourcePropType } from 'react-native';
-import { DEFAULT_DRINK_IMAGE, IMAGE_NAME_MAPPING } from '../../settings/data/images';
+import { IMAGE_NAME_MAPPING } from '../../drinks/data/images';
 
 export function getDrinkImage(imageName: string): ImageSourcePropType {
   const image = IMAGE_NAME_MAPPING[imageName];
   if (image) {
     return image;
   }
-  return DEFAULT_DRINK_IMAGE;
+  return IMAGE_NAME_MAPPING.default;
 }

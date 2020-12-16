@@ -6,7 +6,7 @@ import {
 } from '../../data/strings';
 import styles from './drink-buttons-container.styles';
 import CustomActionButton from '../../../actions/components/action-register-button/custom-action/custom-action-button.component';
-import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/model';
+import { ALCOHOL_UNIT_ACTION_TYPE } from '../../models/constants';
 import buttonStyles from '../predefined-drink-button/predefined-drink-button.styles';
 import {
   getAlcoholicDrinks,
