@@ -2,16 +2,39 @@ import React, { useState } from 'react';
 import {
   Button, Dialog, Portal, TextInput
 } from 'react-native-paper';
+import Carousel from 'react-native-snap-carousel';
+import {
+  Image, ListRenderItemInfo, View
+} from 'react-native';
 import { DrinkButtonDialogModel } from './drink-button-dialog.model';
 import { upsertAlcoholicDrink } from '../../../../drinks/hooks/application';
-import styles from './drink-button-dialog.styles';
+import styles, {
+  CAROUSEL_INACTIVE_ITEM_OPACITY,
+  CAROUSEL_INACTIVE_ITEM_SCALE,
+  CAROUSEL_ITEM_SIZE,
+  CAROUSEL_WIDTH
+} from './drink-button-dialog.styles';
+import { DRINK_IMAGE_NAME_MAPPING } from '../../../../drinks/data/images';
+import { getDrinkImage } from '../../../../shared/hooks/images';
 
 const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
+  const [imageName, setImageName] = useState(props.drink.imageName);
   const [name, setName] = useState(props.drink.name);
   const [volume, setVolume] = useState(props.drink.volume.toFixed(0));
   const [content, setContent] = useState((props.drink.content * 100).toFixed(2));
+  const [carouselRef, setCaroulselRef] = useState<Carousel<string> | null>(null);
 
-  const resetDialog = () => {};
+  const carouselImages = Object.keys(DRINK_IMAGE_NAME_MAPPING);
+  const carouselStartIndex = carouselImages.findIndex((entry: string) => entry === imageName);
+  const onCarouselImageSelected = (slideIndex: number) => setImageName(carouselImages[slideIndex]);
+
+  const resetDialog = () => {
+    setImageName(props.drink.imageName);
+    setName(props.drink.name);
+    setVolume(props.drink.volume.toFixed(0));
+    setContent((props.drink.content * 100).toFixed(2));
+    if (carouselRef) carouselRef.snapToItem(carouselStartIndex, false);
+  };
 
   const isValidForm = name !== '' && parseFloat(volume) > 0 && parseFloat(content) > 0;
 
@@ -22,10 +45,9 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
       volume: parseFloat(volume),
       content: parseFloat(content) / 100,
       sortingIndex: props.drink.sortingIndex,
-      imageName: props.drink.imageName,
+      imageName,
       buttonColor: props.drink.buttonColor,
     });
-    resetDialog();
     props.onDialogConfirm();
   };
 
@@ -34,11 +56,35 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
     props.onDismiss();
   };
 
+  const renderCarouselItem = (info: ListRenderItemInfo<string>) => {
+    const image = getDrinkImage(info.item);
+    return (
+      <View style={styles.carouselItem}>
+        <Image style={styles.carouselImage} source={image} />
+      </View>
+    );
+  };
+
   return (
     <Portal>
       <Dialog visible={props.visible} onDismiss={onDismiss}>
         <Dialog.Title>Drink button</Dialog.Title>
         <Dialog.Content>
+          <View style={styles.carouselRowContainer}>
+            <View style={styles.carouselContainer}>
+              <Carousel
+                ref={(c) => setCaroulselRef(c)}
+                data={carouselImages}
+                renderItem={renderCarouselItem}
+                sliderWidth={CAROUSEL_WIDTH}
+                itemWidth={CAROUSEL_ITEM_SIZE}
+                inactiveSlideOpacity={CAROUSEL_INACTIVE_ITEM_OPACITY}
+                inactiveSlideScale={CAROUSEL_INACTIVE_ITEM_SCALE}
+                firstItem={carouselStartIndex}
+                onSnapToItem={onCarouselImageSelected}
+              />
+            </View>
+          </View>
           <TextInput
             mode="outlined"
             label="Name"
