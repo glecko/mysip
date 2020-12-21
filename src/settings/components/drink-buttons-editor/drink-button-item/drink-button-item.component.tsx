@@ -33,7 +33,7 @@ const DrinkButtonItem = (props: DrinkButtonItemModel) => {
       <AlertConfirmButton
         onConfirm={deleteCurrentDrink}
         alertText={alertText}
-        alertTitle="Delete action?"
+        alertTitle="Delete button?"
         renderContentFn={renderButtonContentFn}
       />,
     ];

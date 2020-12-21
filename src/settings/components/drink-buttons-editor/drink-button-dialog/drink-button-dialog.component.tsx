@@ -16,8 +16,11 @@ import styles, {
 } from './drink-button-dialog.styles';
 import { DRINK_IMAGE_NAME_MAPPING } from '../../../../drinks/data/images';
 import { getDrinkImage } from '../../../../shared/hooks/images';
+import { AVAILABLE_DRINK_BUTTON_COLORS } from '../../../../drinks/data/colors';
+import ColorSelectorComponent from '../../../../shared/components/color-selector/color-selector.component';
 
 const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
+  const [buttonColor, setButtonColor] = useState(props.drink.buttonColor);
   const [imageName, setImageName] = useState(props.drink.imageName);
   const [name, setName] = useState(props.drink.name);
   const [volume, setVolume] = useState(props.drink.volume.toFixed(0));
@@ -46,7 +49,7 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
       content: parseFloat(content) / 100,
       sortingIndex: props.drink.sortingIndex,
       imageName,
-      buttonColor: props.drink.buttonColor,
+      buttonColor,
     });
     props.onDialogConfirm();
   };
@@ -110,6 +113,11 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
             onChangeText={(text) => setContent(text)}
             value={content}
             style={styles.textInput}
+          />
+          <ColorSelectorComponent
+            initialColor={buttonColor}
+            options={AVAILABLE_DRINK_BUTTON_COLORS}
+            onChange={(color) => setButtonColor(color)}
           />
         </Dialog.Content>
         <Dialog.Actions>

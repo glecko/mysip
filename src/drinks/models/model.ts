@@ -1,4 +1,3 @@
-import { ColorValue } from 'react-native';
 import { RealmEntry } from '../../shared/storage/models';
 
 export const WEIGHT_STORAGE_KEY = 'weight';
@@ -17,6 +16,6 @@ export interface AlcoholicDrinkModel extends RealmEntry {
   volume: number;
   content: number;
   imageName: string;
-  buttonColor: ColorValue;
+  buttonColor: string;
   sortingIndex: number;
 }
