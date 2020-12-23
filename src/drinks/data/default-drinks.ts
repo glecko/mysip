@@ -124,7 +124,7 @@ export const DEFAULT_APP_DRINKS: AlcoholicDrinkModel[] = [
     volume: 100,
     content: 0.17,
     imageName: 'cocktail',
-    buttonColor: '#91ffad',
+    buttonColor: '#baffcb',
     sortingIndex: 14
   },
 ];
