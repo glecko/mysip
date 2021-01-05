@@ -22,7 +22,9 @@ const CustomActionButton = (props: CustomActionRegisterButtonModel) => {
 
   const textElement = (
     <View style={ActionRegisterButtonStyles.textContainer}>
-      <Text style={ActionRegisterButtonStyles.mainText}>{mainText}</Text>
+      <View style={ActionRegisterButtonStyles.mainTextContainer}>
+        <Text style={ActionRegisterButtonStyles.mainText}>{mainText}</Text>
+      </View>
     </View>
   );
 

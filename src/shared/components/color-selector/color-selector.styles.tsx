@@ -4,7 +4,7 @@ const ColorSelectorStyles = StyleSheet.create({
   container: {
     marginTop: 16,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap'
   },

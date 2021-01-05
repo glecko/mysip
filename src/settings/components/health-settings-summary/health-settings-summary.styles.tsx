@@ -16,7 +16,7 @@ const HealthSettingsSummaryStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '60%',
+    width: '80%',
   },
   header: {
     fontSize: 18,

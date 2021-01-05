@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import {
+  View, Text, TouchableHighlight, TouchableOpacity, Pressable
+} from 'react-native';
 // @ts-ignore
 import Swipeable from 'react-native-swipeable-row';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,7 +15,15 @@ import { deleteAction } from '../../../hooks/application';
 
 const ActionListItem = (props: ActionListItemModel) => {
   const [editDialogVisible, setEditDialogVisible] = useState(false);
-  const onEditDialogClose = () => setEditDialogVisible(false);
+  const [swipeableRef, setSwipeableRef] = useState<any>();
+  const onEditDialogClose = () => {
+    setEditDialogVisible(false);
+    if (swipeableRef) swipeableRef.recenter();
+  };
+
+  const onItemPress = () => {
+    if (swipeableRef) swipeableRef.bounceRight();
+  };
 
   const deleteCurrentAction = () => deleteAction(props.action);
   const alertText = `Are you sure you want to delete this action? (${displayAction(props.action, true)})`;
@@ -41,10 +51,10 @@ const ActionListItem = (props: ActionListItemModel) => {
 
   const text = displayAction(props.action, true);
   return (
-    <Swipeable rightButtons={actionRightButtons()}>
-      <View style={styles.swipeRowFront}>
+    <Swipeable onRef={(ref: any) => setSwipeableRef(ref)} rightButtons={actionRightButtons()}>
+      <Pressable onPress={onItemPress} style={styles.swipeRowFront}>
         <Text>{text}</Text>
-      </View>
+      </Pressable>
       <ActionEditDialog
         action={props.action as ActionStub}
         visible={editDialogVisible}

@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const ActionListItemStyles = StyleSheet.create({
   swipeRowFront: {
-    borderColor: 'gray',
-    borderWidth: 0.5,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
     height: 50,

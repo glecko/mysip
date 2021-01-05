@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button, Dialog, Portal, TextInput
 } from 'react-native-paper';
@@ -23,6 +23,10 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
     setDate(props.action.date);
   };
 
+  useEffect(() => {
+    resetDialog();
+  }, [props.visible]);
+
   const onDialogConfirm = () => {
     upsertAction({
       id: props.action.id,
@@ -33,12 +37,10 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
       note,
       registerDate: props.action.registerDate
     });
-    resetDialog();
     props.onDialogConfirm();
   };
 
   const onDismiss = () => {
-    resetDialog();
     props.onDismiss();
   };
 

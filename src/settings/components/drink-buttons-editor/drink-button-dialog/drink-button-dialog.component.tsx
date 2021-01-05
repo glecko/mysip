@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button, Dialog, Portal, TextInput
 } from 'react-native-paper';
@@ -36,8 +36,16 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
     setName(props.drink.name);
     setVolume(props.drink.volume.toFixed(0));
     setContent((props.drink.content * 100).toFixed(2));
-    if (carouselRef) carouselRef.snapToItem(carouselStartIndex, false);
+    setButtonColor(props.drink.buttonColor);
+    if (carouselRef) {
+      const originalCarouselIndex = carouselImages.findIndex((entry: string) => entry === props.drink.imageName);
+      carouselRef.snapToItem(originalCarouselIndex, false);
+    }
   };
+
+  useEffect(() => {
+    resetDialog();
+  }, [props.visible]);
 
   const isValidForm = name !== '' && parseFloat(volume) > 0 && parseFloat(content) > 0;
 
@@ -55,7 +63,6 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
   };
 
   const onDismiss = () => {
-    resetDialog();
     props.onDismiss();
   };
 

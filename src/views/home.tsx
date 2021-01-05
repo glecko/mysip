@@ -7,6 +7,7 @@ import {
 import DrinkButtonsContainer from '../drinks/components/drink-buttons-container/drink-buttons-container.component';
 import IntervalMonitorsContainer
   from '../drinks/components/interval-monitors-container/interval-monitors-container.component';
+import DeleteLastDrinkButton from '../drinks/components/delete-last-drink/delete-last-drink-button.component';
 
 const styles = StyleSheet.create({
   scrollView: {},
@@ -22,6 +23,7 @@ const HomeView = () => (
         <DrinkButtonsContainer />
       </View>
     </ScrollView>
+    <DeleteLastDrinkButton />
   </View>
 );
 

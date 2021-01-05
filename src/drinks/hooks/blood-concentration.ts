@@ -12,7 +12,7 @@ import { ActionModel } from '../../actions/models/models';
 import { UserGender } from '../models/model';
 import { getUserGender, getUserWeight } from '../../settings/hooks/health-settings/application';
 import { getAlcoholGrams } from './format';
-import { getIntervalUntilPresent } from '../components/interval-monitors-container/interval-monitors-container.component';
+import { getIntervalUntilPresent } from './monitors';
 
 /*
   Returns a collection of drinks (actions) that are recent enough as to possibly still be active in the user's blood.

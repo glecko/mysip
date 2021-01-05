@@ -31,7 +31,8 @@ const HealthSettingsDialogComponent = (props: HealthSettingsDialogModel) => {
         <Dialog.Content style={styles.container}>
           <TextInput
             mode="outlined"
-            placeholder="Weight"
+            placeholder="Weight (kg)s"
+            label="Weight (kg)"
             keyboardType="numeric"
             onChangeText={(value) => setWeight(value)}
             value={weight}

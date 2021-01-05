@@ -8,6 +8,7 @@ const PredefinedDrinkButtonStyles = StyleSheet.create({
     elevation: 5,
     borderRadius: 15,
     width: 100,
+    height: 108,
     margin: 5,
   }
 });

@@ -9,11 +9,11 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
   leftContainer: {
     flex: 3,
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   centerContainer: {
-    flex: 4,
+    flex: 3,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,10 +22,6 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
     flex: 3,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bloodConcentrationContainer: {
-    marginTop: 16,
     alignItems: 'center',
   },
   intervalDescriptionText: {
@@ -38,14 +34,6 @@ const IntervalMonitorsContainerStyles = StyleSheet.create({
     textAlign: 'center'
   },
   monitorSubheader: {
-    fontSize: 12,
-    textAlign: 'center'
-  },
-  bloodConcentrationText: {
-    fontSize: 25,
-    textAlign: 'center'
-  },
-  bloodConcentrationDescription: {
     fontSize: 12,
     textAlign: 'center'
   },

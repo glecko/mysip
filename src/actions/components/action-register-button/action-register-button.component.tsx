@@ -11,10 +11,12 @@ const ActionRegisterButton = (props: ActionRegisterButtonModel) => {
 
   const textElement = (
     <View style={ActionRegisterButtonStyles.textContainer}>
-      <Text style={ActionRegisterButtonStyles.mainText}>{mainText}</Text>
+      <View style={ActionRegisterButtonStyles.mainTextContainer}>
+        <Text ellipsizeMode="tail" numberOfLines={2} style={ActionRegisterButtonStyles.mainText}>{mainText}</Text>
+      </View>
       <View style={ActionRegisterButtonStyles.bottomTextContainer}>
-        <Text style={ActionRegisterButtonStyles.bottomLeftText}>{props.bottomLeftText}</Text>
-        <Text style={ActionRegisterButtonStyles.bottomRightText}>{props.bottomRightText}</Text>
+        <Text ellipsizeMode="tail" numberOfLines={1} style={ActionRegisterButtonStyles.bottomLeftText}>{props.bottomLeftText}</Text>
+        <Text ellipsizeMode="tail" numberOfLines={1} style={ActionRegisterButtonStyles.bottomRightText}>{props.bottomRightText}</Text>
       </View>
     </View>
   );

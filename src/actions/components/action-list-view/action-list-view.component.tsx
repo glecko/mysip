@@ -22,6 +22,7 @@ const ActionListView = (props: ActionListViewModel) => {
   return (
     <SafeAreaView>
       <FlatList
+        style={{ borderTopWidth: 0.5, borderTopColor: 'gray', }}
         data={actionsData}
         keyExtractor={(action: ActionModel) => action.id}
         renderItem={renderItem}

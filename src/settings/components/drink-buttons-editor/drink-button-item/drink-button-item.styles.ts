@@ -2,17 +2,18 @@ import { StyleSheet } from 'react-native';
 
 const DrinkButtonItemStyles = StyleSheet.create({
   swipeRowFront: {
-
-    borderColor: 'gray',
-    borderWidth: 0.5,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
+    alignContent: 'center',
     height: 50,
   },
   description: {
     flexDirection: 'row',
-    width: '70%',
-    justifyContent: 'space-between'
+    width: '80%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   actionButton: {
     height: '100%',

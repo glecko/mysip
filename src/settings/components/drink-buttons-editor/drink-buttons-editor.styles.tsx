@@ -14,6 +14,8 @@ const DrinkButtonsEditorStyles = StyleSheet.create({
   listContainer: {
     marginBottom: 16,
     marginTop: 16,
+    borderTopColor: 'gray',
+    borderTopWidth: 0.5,
   }
 });
 
