@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 
-export interface SwipeableDialogItemModel {
+export interface SwipeableItemRowModel {
   onEdit?: () => void;
   onDelete?: () => void;
   onSwipe?: () => void;

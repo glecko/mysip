@@ -9,10 +9,10 @@ import {
 import Swipeable from 'react-native-swipeable-row';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AlertConfirmButton from '../alert-confirm-button/alert-confirm-button.component';
-import styles from './swipeable-dialog-item.styles';
-import { SwipeableDialogItemModel, SwipeableDialogItemModelHandle } from './swipeable-dialog-item.model';
+import styles from './swipeable-item-row.styles';
+import { SwipeableItemRowModel, SwipeableDialogItemModelHandle } from './swipeable-item-row.model';
 
-const SwipeableDialogItem = (props: SwipeableDialogItemModel, ref: Ref<SwipeableDialogItemModelHandle>): ReactElement => {
+const SwipeableItemRow = (props: SwipeableItemRowModel, ref: Ref<SwipeableDialogItemModelHandle>): ReactElement => {
   const swipeable = useRef<any>(null);
 
   useImperativeHandle(ref, () => ({
@@ -55,4 +55,4 @@ const SwipeableDialogItem = (props: SwipeableDialogItemModel, ref: Ref<Swipeable
   );
 };
 
-export default forwardRef(SwipeableDialogItem);
+export default forwardRef(SwipeableItemRow);

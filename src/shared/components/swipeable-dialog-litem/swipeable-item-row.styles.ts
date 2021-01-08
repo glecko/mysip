@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const SwipeableDialogItemStyles = StyleSheet.create({
+const SwipeableItemRowStyles = StyleSheet.create({
   swipeRowFront: {
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
@@ -15,4 +15,4 @@ const SwipeableDialogItemStyles = StyleSheet.create({
   },
 });
 
-export default SwipeableDialogItemStyles;
+export default SwipeableItemRowStyles;

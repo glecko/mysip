@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { View, Text } from 'react-native';
-import SwipeableDialogItem from 'shared/components/swipeable-dialog-litem/swipeable-dialog-item.component';
+import SwipeableItemRow from 'shared/components/swipeable-dialog-litem/swipeable-item-row.component';
 import { ActionListItemModel } from './action-list-item.model';
 import ActionEditDialog from '../../action-edit-dialog/action-edit-dialog.component';
 import { displayAction } from '../../../hooks/display';
 import { ActionStub } from '../../../models/models';
 import { deleteAction } from '../../../hooks/application';
-import { SwipeableDialogItemModelHandle } from '../../../../shared/components/swipeable-dialog-litem/swipeable-dialog-item.model';
+import { SwipeableDialogItemModelHandle } from '../../../../shared/components/swipeable-dialog-litem/swipeable-item-row.model';
 
 const ActionListItem = (props: ActionListItemModel) => {
   const swipeableItem = useRef<SwipeableDialogItemModelHandle>(null);
@@ -21,14 +21,14 @@ const ActionListItem = (props: ActionListItemModel) => {
   const text = displayAction(props.action, true);
   return (
     <View>
-      <SwipeableDialogItem
+      <SwipeableItemRow
         ref={swipeableItem}
         onDelete={() => deleteAction(props.action)}
         onEdit={() => setEditDialogVisible(true)}
         deleteAlertText={alertText}
       >
         <Text>{text}</Text>
-      </SwipeableDialogItem>
+      </SwipeableItemRow>
       <ActionEditDialog
         action={props.action as ActionStub}
         visible={editDialogVisible}
