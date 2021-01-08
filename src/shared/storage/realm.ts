@@ -1,6 +1,7 @@
 import Realm from 'realm';
 import { REALM_SCHEMAS } from './migrations';
 import { RealmEntry } from './models';
+import { REALM_INIT_FUNCTIONS } from './init';
 
 class RealmServiceClass {
   private static executeMigrations() {
@@ -22,6 +23,7 @@ class RealmServiceClass {
   constructor() {
     RealmServiceClass.executeMigrations();
     this.realmInstance = new Realm(REALM_SCHEMAS[REALM_SCHEMAS.length - 1]);
+    this.executeInitFunctions();
   }
 
   realmInstance: Realm;
@@ -88,6 +90,10 @@ class RealmServiceClass {
     this.realmInstance.write(() => {
       this.realmInstance.delete([entity]);
     });
+  }
+
+  private executeInitFunctions() {
+    REALM_INIT_FUNCTIONS.forEach((initFn) => initFn(this.realmInstance));
   }
 }
 
