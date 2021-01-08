@@ -19,11 +19,6 @@ const DrinkButtonItem = (props: DrinkButtonItemModel) => {
   const alertText = `Are you sure you want to delete this button? (${getDrinkDescription(props.drink)})`;
 
   const actionRightButtons = () => {
-    const renderButtonContentFn = () => (
-      <View style={[styles.actionButton, { backgroundColor: 'red' }]}>
-        <Icon size={30} name="delete" color="white" />
-      </View>
-    );
     return [
       <View>
         <TouchableHighlight onPress={() => setEditDialogVisible(true)} style={[styles.actionButton, { backgroundColor: 'lightseagreen' }]}>
@@ -34,8 +29,11 @@ const DrinkButtonItem = (props: DrinkButtonItemModel) => {
         onConfirm={deleteCurrentDrink}
         alertText={alertText}
         alertTitle="Delete button?"
-        renderContentFn={renderButtonContentFn}
-      />,
+      >
+        <View style={[styles.actionButton, { backgroundColor: 'red' }]}>
+          <Icon size={30} name="delete" color="white" />
+        </View>
+      </AlertConfirmButton>,
     ];
   };
 

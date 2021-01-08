@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { DeleteLastActionButtonModel } from './delete-last-action-button.model';
 import AlertConfirmButton from '../../../shared/components/alert-confirm-button/alert-confirm-button.component';
 import { deleteLastAction, getLastAction } from '../../hooks/application';
@@ -14,9 +14,6 @@ function getAlertText(): string {
 }
 
 const DeleteLastActionButton = (props: DeleteLastActionButtonModel) => {
-  const buttonPressCancel = () => {};
-
-  const buttonText = `Delete last ${props.type} entry`;
   const alertTitle = 'Delete last entry?';
   return (
     <View>
@@ -24,10 +21,10 @@ const DeleteLastActionButton = (props: DeleteLastActionButtonModel) => {
         onConfirm={() => deleteLastAction(props.type)}
         alertTextFn={getAlertText}
         alertTitle={alertTitle}
-        buttonText={buttonText}
-        renderContentFn={props.renderButtonContentFn}
-        onCancel={buttonPressCancel}
-      />
+        onCancel={() => {}}
+      >
+        {props.children}
+      </AlertConfirmButton>
     </View>
   );
 };

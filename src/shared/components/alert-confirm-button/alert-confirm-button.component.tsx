@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  View, Button, Alert, TouchableHighlight
-} from 'react-native';
+import { Alert, TouchableHighlight } from 'react-native';
 import { AlertConfirmButtonModel } from './alert-confirm-button.model';
 
 const AlertConfirmButton = (props: AlertConfirmButtonModel) => {
@@ -13,19 +11,9 @@ const AlertConfirmButton = (props: AlertConfirmButtonModel) => {
     ]);
   };
 
-  if (props.renderContentFn) {
-    return (
-      <TouchableHighlight onPress={buttonPress}>{props.renderContentFn()}</TouchableHighlight>
-    );
-  }
-  if (props.buttonText) {
-    return (
-      <View>
-        <Button onPress={buttonPress} title={props.buttonText} />
-      </View>
-    );
-  }
-  throw Error('Neither the buttonContent nor the buttonText prop were defined in the component');
+  return (
+    <TouchableHighlight onPress={buttonPress}>{props.children}</TouchableHighlight>
+  );
 };
 
 export default AlertConfirmButton;
