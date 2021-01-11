@@ -35,7 +35,7 @@ const HealthSettingsDialogComponent = (props: HealthSettingsDialogModel) => {
             label="Weight (kg)"
             keyboardType="numeric"
             onChangeText={(value) => setWeight(value)}
-            value={weight}
+            defaultValue={weight}
           />
           <View style={styles.genderSelectorContainer}>
             <RadioButton.Group onValueChange={(value) => setGender(value)} value={gender}>

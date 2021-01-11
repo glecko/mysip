@@ -99,7 +99,7 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
             mode="outlined"
             label="Name"
             placeholder="Name"
-            value={name}
+            defaultValue={name}
             onChangeText={(text) => setName(text)}
             style={styles.textInput}
           />
@@ -109,7 +109,7 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
             placeholder="Volume (ml)"
             keyboardType="numeric"
             onChangeText={(text) => setVolume(text)}
-            value={volume}
+            defaultValue={volume}
             style={styles.textInput}
           />
           <TextInput
@@ -118,7 +118,7 @@ const DrinkButtonDialog = (props: DrinkButtonDialogModel) => {
             placeholder="Content (%)"
             keyboardType="numeric"
             onChangeText={(text) => setContent(text)}
-            value={content}
+            defaultValue={content}
             style={styles.textInput}
           />
           <ColorSelectorComponent

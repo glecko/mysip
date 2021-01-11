@@ -57,7 +57,7 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
             mode="outlined"
             label={props.subtypePlaceholder ? props.subtypePlaceholder : 'Subtype'}
             placeholder={props.subtypePlaceholder ? props.subtypePlaceholder : 'Subtype'}
-            value={subtype}
+            defaultValue={subtype}
             onChangeText={(text) => setSubtype(text)}
             style={styles.textInput}
           />
@@ -67,14 +67,14 @@ const ActionEditDialog = (props: ActionEditDialogModel) => {
             placeholder={props.amountPlaceholder ? props.amountPlaceholder : 'Amount'}
             keyboardType="numeric"
             onChangeText={(text) => setAmount(text)}
-            value={amount}
+            defaultValue={amount}
             style={styles.textInput}
           />
           <TextInput
             mode="outlined"
             label={props.notePlaceholder ? props.notePlaceholder : 'Note'}
             placeholder={props.notePlaceholder ? props.notePlaceholder : 'Note'}
-            value={note}
+            defaultValue={note}
             onChangeText={(text) => setNote(text)}
             style={styles.textInput}
           />
