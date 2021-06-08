@@ -11,7 +11,7 @@ import DeleteLastDrinkButton from '../drinks/components/delete-last-drink/delete
 
 const styles = StyleSheet.create({
   scrollView: {},
-  body: {},
+  body: { marginBottom: 70 },
   container: { flex: 1 }
 });
 

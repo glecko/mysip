@@ -1,4 +1,4 @@
-# Silenus
+# MySip
 
 ## Summary
 
@@ -6,12 +6,24 @@ A mobile application built with [React Native](https://reactnative.dev/) that al
 
 ## Setting up the dev environment
 
+### React native environment
+
 Check out the instructions on how to set up the React Native environment in their [setup guide](https://reactnative.dev/docs/environment-setup).
+
+### Installing dependencies
 
 To install the application's dependencies:
 
 ```sh
 npm install
+```
+
+### Environment variables
+
+Create a .env file in your project root, with the following structure:
+
+```
+ANDROID_KEYSTORE_PASSWORD=your_android_keychain_password
 ```
 
 ## Getting started

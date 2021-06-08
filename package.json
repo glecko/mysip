@@ -1,5 +1,5 @@
 {
-  "name": "silenus",
+  "name": "mysip",
   "version": "0.0.1",
   "author": "Alejandro Muelas",
   "description": "Alcohol-consumption habits tracker.",
@@ -22,6 +22,7 @@
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-chart-kit": "^6.6.1",
+    "react-native-config": "^1.4.2",
     "react-native-elements": "^2.3.2",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-get-random-values": "^1.4.0",
