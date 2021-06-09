@@ -1,4 +1,4 @@
-package com.mysip;
+package com.mysipapp;
 
 import android.app.Application;
 import android.content.Context;

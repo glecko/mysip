@@ -1,4 +1,4 @@
-package com.mysip;
+package com.mysipapp;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
