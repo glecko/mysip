@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "silenus.app"
-               BlueprintName = "silenus"
-               ReferencedContainer = "container:silenus.xcodeproj">
+               BuildableName = "mysip.app"
+               BlueprintName = "mysip"
+               ReferencedContainer = "container:mysip.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "silenusTests.xctest"
-               BlueprintName = "silenusTests"
-               ReferencedContainer = "container:silenus.xcodeproj">
+               BuildableName = "mysipTests.xctest"
+               BlueprintName = "mysipTests"
+               ReferencedContainer = "container:mysip.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "silenus.app"
-            BlueprintName = "silenus"
-            ReferencedContainer = "container:silenus.xcodeproj">
+            BuildableName = "mysip.app"
+            BlueprintName = "mysip"
+            ReferencedContainer = "container:mysip.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "silenus.app"
-            BlueprintName = "silenus"
-            ReferencedContainer = "container:silenus.xcodeproj">
+            BuildableName = "mysip.app"
+            BlueprintName = "mysip"
+            ReferencedContainer = "container:mysip.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

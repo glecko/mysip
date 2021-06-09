@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "silenus-tvOS.app"
-               BlueprintName = "silenus-tvOS"
-               ReferencedContainer = "container:silenus.xcodeproj">
+               BuildableName = "mysip-tvOS.app"
+               BlueprintName = "mysip-tvOS"
+               ReferencedContainer = "container:mysip.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "silenus-tvOSTests.xctest"
-               BlueprintName = "silenus-tvOSTests"
-               ReferencedContainer = "container:silenus.xcodeproj">
+               BuildableName = "mysip-tvOSTests.xctest"
+               BlueprintName = "mysip-tvOSTests"
+               ReferencedContainer = "container:mysip.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "silenus-tvOS.app"
-            BlueprintName = "silenus-tvOS"
-            ReferencedContainer = "container:silenus.xcodeproj">
+            BuildableName = "mysip-tvOS.app"
+            BlueprintName = "mysip-tvOS"
+            ReferencedContainer = "container:mysip.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "silenus-tvOS.app"
-            BlueprintName = "silenus-tvOS"
-            ReferencedContainer = "container:silenus.xcodeproj">
+            BuildableName = "mysip-tvOS.app"
+            BlueprintName = "mysip-tvOS"
+            ReferencedContainer = "container:mysip.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

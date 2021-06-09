@@ -26,6 +26,15 @@ Create a .env file in your project root, with the following structure:
 ANDROID_KEYSTORE_PASSWORD=your_android_keychain_password
 ```
 
+### CocoaPods libraries (iOS only)
+
+To install CocoaPod libraries for iOS:
+
+```sh
+cd ios/
+pod install
+```
+
 ## Getting started
 
 To start the application:
